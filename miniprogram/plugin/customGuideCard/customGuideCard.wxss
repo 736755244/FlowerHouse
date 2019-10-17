@@ -1,0 +1,19 @@
+.guide{
+  width: 100%; 
+  overflow: hidden;
+  line-height: 43px;
+  font-family: 微软雅黑,'microsoft yahei',宋体,新宋体,sans-serif;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  z-index: 9999;
+  position: fixed;
+  bottom:25%;
+}
+.guideitem{
+  background: #fff;
+  margin:0 10px;
+  padding: 0 10px;
+  display: inline-block;
+  border-radius: 20px;
+}

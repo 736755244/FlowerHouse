@@ -1,0 +1,64 @@
+<view >
+  <view style="height:{{Height}}px;overflow-y:scroll;background:#eee;">
+    <view class="card_con">
+      <swiper  
+        class='swiper'
+        indicator-dots="{{indicatorDots}}" 
+        indicator-color="#FFF"
+        indicator-active-color = "#bc162c"
+        autoplay="{{autoplay}}" 
+        circular="{{circular}}" 
+        vertical="{{vertical}}"
+        interval="{{interval}}" 
+        duration="{{duration}}"
+        bindchange="bindchange"
+        style="height:{{imgheights[current]}}rpx;">
+        <block wx:for="{{bannerlist}}" wx:key="{{index}}">
+        <swiper-item>
+          <image 
+            src="{{item}}" 
+            data-id='{{index}}' 
+            class="slide-image" 
+            mode="widthFix" 
+            bindload="imageLoad"/>
+        </swiper-item>
+        </block>
+      </swiper>
+      <div class="basic_info">
+        <div class="main_t"><text>繁花混合\n</text></div>
+        <div class="sub_t"><text>4-6种花材，12枝以上</text></div>
+        <div class="f_info">
+          <div class="sub_info">
+            <text>¥76.00</text>
+            <text>已预约：111</text>
+            <text>剩余：23</text>
+          </div>
+        </div>
+      </div>
+    </view>
+    <view class="info">
+      <view class="detail-header">服务详情</view>
+      <view class="detail-content">
+        <text>鲜花主花材: 混搭花束\n</text>
+        <text>鲜花规格(直径X高): 18cm*43cm\n</text>
+        <text>鲜花朵数: 其他\n</text>
+        <text>颜色分类: 订一个月（4束），周一收花 订一个月（4束），周六收花 订三个月（12束），周一收花 订三个月（12束），周六收花 订六个月（24束），周一收花 订六个月（24束），周六收花 订十二个月（48束），周一收花 订十二个月（48束），周六收花\n</text>
+        <text>适用节日: 情人节 七夕 其他 白色情人节 建军节\n</text>
+        <text>货号: FP－Rose－20170516\n</text>
+        <text>花束辅材: 无\n</text>
+        <text>适用场景: 爱意表达 生日 祝福 婚礼 其他 求婚\n</text>
+        <text>适用对象: 爱人 老师 客户 领导/长辈 朋友/同事\n</text>
+        <text>鲜花绿植工艺: 鲜花(鲜切花)\n</text>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <div class="service-footer">
+      <div class="service-detail-nav">
+        <image src="../../../images/pictrues/phone.png"></image>
+        <span class="nav-booking-item" bindtap="toOrder">立即预约</span>
+      </div>
+    </div>
+  </view>
+</view>

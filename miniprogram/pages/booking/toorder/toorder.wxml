@@ -1,0 +1,41 @@
+<view class="bg">
+  <view  style="height:{{Height}}px;overflow-y:scroll;">
+    <view class="od_header">
+      <image src="http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACCRu87jBSiwpM_3BzDuBTjoAkBl.jpg"></image>
+      <view class="mr-l-10" style="width:100%;">
+        <text>简约混合\n</text>
+        <text>2-4种花材，8-12枝花头\n</text>
+        <view class="pay">
+          <text>¥75.00</text>
+          <span>到店支付</span>
+          <image src="../../../images/icon/shop.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="od_content mr-t-10">
+      <span class="item-must">*</span>
+      <text>姓名：\n\n</text>
+      <input placeholder="请输入姓名"></input>
+    </view>
+    <view class="od_content mr-t-1">
+      <span class="item-must">*</span>
+      <text>手机：\n\n</text>
+      <input placeholder="请输入手机号码"></input>
+    </view>
+
+    <view class="od_content mr-t-10">
+      <span class="item-must">*</span>
+      <text>留言：\n\n</text>
+      <textarea placeholder="请输入买家留言"></textarea>
+    </view>
+  </view>
+
+  <view>
+    <div class="service-footer">
+      <div class="service-detail-nav">
+        <span class="nav-booking-item" bindtap="confirmOrder">提交订单</span>
+      </div>
+    </div>
+  </view>
+</view>

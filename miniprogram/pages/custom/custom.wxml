@@ -1,0 +1,65 @@
+<view class="section">
+  <view class="top_img">
+    <image src="http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACCPu87jBSiOuNzuBzDuBTjoAkBl.jpg"></image>
+  </view>
+
+  <view class="m-t-10">
+    <view class="content">
+      <view class="con_h">
+        <text>|\t 关于我们</text>
+      </view>
+      <view>
+        <div class="con_flex">
+          <text class="half">一直以热忱周到的服务满足每一位顾客，我店不断出去学习新的花束包装及插花艺术，提高自我，紧跟时尚。</text>
+          <image class="half" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDsrJ7gBSjGtZWhAjCEAjiEAkBl.png"></image>
+        </div>
+         <div class="con_flex">
+          <text class="half">致力于为消费者提供有价值的鲜花情感传递服，强大的鲜花配送体系和服务理念是鲜花优质、快速服务的保障。</text>
+          <image class="half" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDurJ7gBSj0l7StAzCEAjiEAkBl.png"></image>
+        </div>
+      </view>
+    </view>
+  </view>
+
+  <view class="m-t-10 p-20">
+    <image src="http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACD77vrlBSiAy_2nBzDuBTiQA0Bl.jpg" bindtap="toDetail"></image>
+  </view>
+
+   <view class="m-t-10 p-20">
+    <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDYrp7gBSiQ4sucBTCxBTjhAkBl.png"></image>
+    <div class="xh_abs">
+      <text>鲜花养护\n</text>
+      <text>花之美需精心养护\n</text>
+      <text>\n</text>
+      <button bindtap="toNews">立即查看</button>
+    </div>
+
+  </view>
+
+  <view class="m-t-10 p-20">
+    <view class="input_info">
+      <span class="item-must">*</span>
+      <text>姓名：</text>
+      <input placeholder="请输入您的姓名"></input>
+    </view>
+    <view class="input_info">
+      <span class="item-must">*</span>
+      <text>电话：</text>
+      <input placeholder="请输入您的电话"></input>
+    </view>
+    <view class="input_info">
+      <span class="item-must">*</span>
+      <text>图片上传：</text>
+      <input placeholder="请上传所需要的图片"></input>
+    </view>
+    <view class="input_info">
+      <span class="item-must">*</span>
+      <text>留言：</text>
+      <textarea placeholder="请输入您想咨询的内容"></textarea>
+    </view>
+    <view class="input_info">
+      <button>马上提交</button>
+    </view>
+  </view>
+
+</view>

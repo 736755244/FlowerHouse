@@ -1,0 +1,97 @@
+/* 轮播 */
+.swiper{
+  margin-bottom: 5px;
+}
+.swiper image {
+  width: 100%;
+  height: auto;
+}
+.card_con{
+  padding: 15px 15px 5px;
+  margin-bottom: 9px;
+  background-color: #fff;
+  margin-top: 1px;
+}
+.card_con .main_t{
+  font-size: 14px;
+}
+.card_con .sub_t{
+  font-size: 12px;
+  color:#333;
+}
+.f_info{
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  color:#333;
+  margin-top: 10px;
+}
+.sub_info{
+  width: 70%;
+}
+.sub_info text{
+  margin-right: 10px;
+}
+.sub_info text:first-child{
+  color: #F5B43E;
+  font-size: 14px;
+}
+.info{
+  background: #fff;
+  width: 100%;
+}
+.detail-header:before {
+  content: '';
+  border-left: 2px solid #353535;
+  height: 12px;
+  margin-top: -2px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.detail-header {
+  height: 45px;
+  line-height: 45px;
+  padding-left: 15px;
+  border-bottom: 1px solid #eee;
+}
+.detail-content {
+  font-size: 14px;
+  padding: 5px;
+  color: #878787;
+  word-wrap: break-word;
+}
+.detail-content text{
+  padding-bottom: 10px;
+  display: inline-block
+}
+
+/*  */
+.service-footer {
+  height: 49px;
+  background-color: #fff;
+  position: relative;
+}
+.service-detail-nav {
+  height: 49px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid #eee;
+  box-shadow: 0 -2px 8px 0 rgba(0,0,0,.05);
+}
+.service-detail-nav image{
+  width: 24px;
+  height:24px;
+}
+.nav-booking-item {
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #F5B43E;
+  width: 70%;
+  text-align: center;
+  cursor: pointer;
+}

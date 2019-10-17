@@ -1,0 +1,19 @@
+<view wx:if="{{show}}" style="height: 100vh">
+    <chat bind:queryCallback="getQueryCallback" bind:backHome="goBackHome"/>
+    <!-- 自定义消息模板
+      generic:textMessage="customTextMessage"
+      generic:weatherMessage="customWeatherMessage"
+      generic:imageMessage="customImageMessage"
+      generic:musicMessage="customMusicMessage"
+      generic:newsMessage="customNewsMessage"
+      generic:unsupportedMessage="customUnsupportedMessage"
+      generic:guideCard="customGuideCard"
+     -->
+</view>
+
+<view wx:else>
+  <button bindtap="uploadimg">上传首页轮播图</button>
+  <block wx:for="{{tempFilePaths}}" wx:key="*this">
+    <image src="{{item}}" bindtap="previewImg" data-index="{{index}}"></image>
+  </block>
+</view>

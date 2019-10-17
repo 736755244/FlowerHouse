@@ -1,0 +1,8 @@
+/**app.wxss**/
+/* 不使用flex布局 */
+.container {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+} 

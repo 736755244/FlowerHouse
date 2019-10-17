@@ -1,0 +1,373 @@
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+div{
+  display: block;
+}
+/* 固定操作按钮 */
+.arrowWidget {
+  display: inline-block;
+  width: 34px;
+  height: 32px;
+  position: fixed;
+  background: white;
+  border: 1px solid rgba(185, 185, 179, 0.6);
+  border-radius: 3px;
+  cursor: pointer;
+  z-index: 99;
+}
+.collectArrow {
+  right: 10px;
+  bottom: 10px;
+}
+.editArrow {
+  right: 10px;
+  bottom: 8px;
+}
+.menuArrow {
+  right: 10px;
+  top: 90px;
+}
+.arrow {
+  width: 18px;
+  height: 14px;
+  position: absolute;
+  transform-origin: center;
+  transform: rotateX(0deg);
+  transition: transform .8s;
+  left: 50%;
+  top: 50%;
+  margin-top: -7px;
+  margin-left: -9px;
+}
+.top .arrow {
+  transform: rotate(270deg);
+}
+.left .arrow {
+  transform: rotate(180deg);
+}
+.right .arrow {
+  transform: rotate(0deg);
+}
+.bottom .arrow {
+  transform: rotate(90deg);
+}
+/* 轮播 */
+.swiper image {
+  width: 100%;
+  height: 180px;
+}
+/*  */
+.mr-t-10{
+  margin-top: 10px;
+}
+.flex-wrp {
+  display: flex;
+  flex-direction:row;
+  height: 100px;
+}
+.flex-item{
+  width: 33.3333%;
+  font-size: 12px;
+  padding: 5px;
+  position: relative;
+}
+.flex-item image{
+  width: 24px;
+  height: 30px;
+  position: absolute;
+  top: 30px;
+  left: 10px;
+}
+.flex-item text{
+  position: absolute;
+  top: 30px;
+  left: 50px;
+}
+/* jxdp */
+.hType {
+  justify-content: center;
+  text-align: center;
+}
+.module_title {
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.module_bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.module_title .flex_title {
+  position: relative;
+  margin-left: 15px;
+}
+.module_title .lines {
+  display: inline-block;
+  width: 12px;
+  height: 1px;
+  background-color: #d9d9d9;
+  vertical-align: middle;
+  position: relative;
+  top: 1px;
+}
+.module_title .left_lines {
+  right: 10px;
+}
+.module_title .right_lines {
+  left: 10px;
+}
+.module_title .for_sub_title_pos {
+  vertical-align: middle;
+  display: inline-block;
+  max-width: 266px;
+}
+.module_title .main_title {
+  font-size: 15px;
+  color: #353535;
+}
+.module_title .title_text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 15px;
+}
+.module_title .gap_lines {
+  width: 50px;
+  height: 2px;
+  background-color: #3a82f8;
+  border-radius: 2px;
+  margin: 0 auto;
+  display: none;
+}
+.module_content_wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.magic-style-four .magic-nav-icon {
+  position: relative;
+  overflow: hidden;
+}
+.magic-style-four .magic-nav-icon:nth-child(even) .flex-wrap {
+  flex-direction: row-reverse;
+}
+.magic-style-four .magic-nav-icon:nth-child(odd) .flex-wrap {
+  flex-direction: row;
+}
+.magic-style-four .flex-wrap {
+  display: flex;
+}
+.magic-style-four .material-text {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.magic-style-four .material-part {
+  width: 50%;
+  height: 115px;
+  vertical-align: top;
+  position: relative;
+}
+.card1{
+  background-image: url(http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC4tZ7gBSjuqc6KAzD3AjjmAUBl.png); 
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.card2{
+  background-image: url(http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC6tZ7gBSj26uVZMPcCOOYBQGU.png); 
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.card3{
+  background-image: url(http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8tZ7gBSiohduxAzD3AjjmAUBl.png); 
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.magic-style-four .title-wrap {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.magic-style-four .main-title {
+  font-size: 14px;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 5px;
+}
+.magic-style-four .sub-heading {
+  font-size: 11px;
+  color: #F4B43E;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 3px 5px 0;
+  opacity: 0.8;
+}
+/*  */
+image.c_img1{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width:75px; 
+  height:41px;
+  top: 39px;
+}
+image.c_img2{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width:75px; 
+  height:41px;
+  top: 399px;
+}
+.module-simpleText {
+  padding: 10px;
+  height: auto!important;
+  text-align: center;
+  font-family: 微软雅黑,'microsoft yahei',宋体,新宋体,sans-serif;
+  color: #353535;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.sub_text1{
+  font-size: 14px;
+  width: 140px;
+}
+.sub_text2{
+  font-size:12px;
+  width: 180px;
+}
+.editor-break-word {
+  word-break: normal;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  min-height: 17px;
+  outline: 0;
+}
+.ed_resize{
+  padding: 10px;
+  position: absolute;
+  font-size: 12px;
+  color: rgb(244, 180, 62);
+  width: 92px;
+  line-height: 17px;
+}
+.module_btm image{
+  position: absolute;
+}
+image.b_img1{
+  width:195px;
+  height: 195px;
+  left: -1px;
+  top: 172px;
+}
+image.b_img2{
+  width:195px;
+  height: 195px;
+  left: 215px;
+  top: 172px;
+}
+image.b_img3{
+  left: -1px;
+  top: 545px;
+  width: 35%;
+  height: 105px;
+}
+image.b_img4{
+  width: 28%;
+  height: 139px;
+  left: 135px;
+  top: 533px;
+}
+image.b_img5{
+  width: 35%;
+  height: 105px;
+  left: 245px;
+  top: 565px;
+}
+.ed_subtitle1{
+  position: absolute;
+  width: 92px;
+}
+/*  */
+.moduleType {
+  position: relative;
+}
+.view_more {
+  top: 0;
+  right: 15px;
+  position: absolute;
+  height: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.view_more .more_text {
+  display: inline-block;
+  font-size: 12px;
+  color: #9b9b9b;
+  cursor: pointer;
+}
+.small-box-list {
+  padding: 5px 0;
+  overflow: hidden;
+}
+.small-box-list .item-box {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+  position: relative;
+  padding: 15px 15px;
+  border-bottom: 1px solid #eee;
+}
+.small-box-list .img-wrapper {
+  width: 60px;
+  height: 60px;
+  margin-right: 12px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.small-box-list .info {
+  flex-grow: 1;
+  width: 250px;
+}
+.name {
+  color: #333;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.job {
+  min-height: 16px;
+  color: #999;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.small-box-list .icon-phone {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}

@@ -1,0 +1,45 @@
+<view class="bg_border">
+  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx">
+    <view class="order_detail">
+      <view class="order_status">
+        <image src="../../images/icon/pay_wait.png"></image>
+        <text>订单进行中（到店支付）</text>
+      </view>
+      <view class="order_all">
+        <view class="o_detail">
+          <image src="../../images/icon/default.png"></image>
+          <view>
+            <div>小程序服务（示例数据）</div>
+            <div>专业提供微信小程序管理、设计服务</div>
+            <div>0.1</div>
+          </view>
+        </view>
+        <view class="o_sub1">
+          <div class="sub_title">预约信息</div>
+          <div class="sub_sub"><span>预约人：xxxxxxxxx</span></div>
+          <div class="sub_sub"><span>预约电话：xxxxxxxxx</span></div>
+          <div class="sub_sub">
+            <span>买家留言：</span>
+            <div class="wrap-con">
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+          </div>
+        </view>
+        <view class="o_sub2">
+          <div class="sub_title">订单信息</div>
+          <div class="sub_sub"><span>订单编号：20191009</span></div>
+          <div class="sub_sub"><span>下单时间：2019-10-09 10:23</span></div>
+        </view>
+        <view class="o_sub2">
+          <div class="sub_title">订单信息</div>
+          <div class="sub_sub"><span>订单编号：20191009</span></div>
+          <div class="sub_sub"><span>下单时间：2019-10-09 10:23</span></div>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="btn_opt">
+    <div class="btn_50">查看地址</div>
+    <div class="btn_50">联系我们</div>
+  </view>
+</view>

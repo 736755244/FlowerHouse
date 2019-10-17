@@ -1,0 +1,8 @@
+<scroll-view>
+  <view wx:for="{{msg.docs}}" wx:key>
+    <view>歌名：{{item.name}}</view>
+    <view>演唱:{{item.author}}</view>
+    <view>封面地址:{{item.album_pic_url}}</view>
+    <view>歌曲地址:{{item.url}}</view>
+  </view>
+</scroll-view>

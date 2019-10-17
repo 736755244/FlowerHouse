@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/custom/custom",
+    "pages/custom/cusdetail",
+    "pages/order/order",
+    "pages/order/orderdetail",
+    "pages/card/cardlist",
+    "pages/card/card",
+    "pages/user/user",
+    "pages/news/news",
+    "pages/robot/robot",
+    "pages/news/newsdetail",
+    "pages/search/search",
+    "pages/search/searchresult",
+    "pages/booking/index/booking",
+    "pages/booking/detail/detail",
+    "pages/booking/toorder/toorder",
+    "pages/booking/complete/complete"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "zm的微信小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "chatbot": {
+      "version": "1.0.8",
+      "provider": "wx8c631f7e9f2465e1"
+    },
+    "WechatSI": {
+      "version": "0.3.1",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "color": "#666",
+    "selectedColor": "#F5B43E",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon/1.png",
+        "selectedIconPath": "images/icon/1_1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/custom/custom",
+        "iconPath": "images/icon/2.png",
+        "selectedIconPath": "images/icon/2_1.png",
+        "text": "店铺"
+      },
+      {
+        "pagePath": "pages/booking/index/booking",
+        "iconPath": "images/icon/3.png",
+        "selectedIconPath": "images/icon/3_1.png",
+        "text": "预约"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/icon/4.png",
+        "selectedIconPath": "images/icon/3_1.png",
+        "text": "我的"
+      },
+      {
+        "pagePath": "pages/robot/robot",
+        "iconPath": "images/icon/robot.png",
+        "selectedIconPath": "images/icon/robot_1.png",
+        "text": "客服"
+      }
+    ]
+  }
+}

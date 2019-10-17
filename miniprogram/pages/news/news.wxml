@@ -1,0 +1,28 @@
+<view>
+  <view class="bg_border">
+    <view class="news">
+      <view class="news_item" bindtap="toDetail" data-newid="1">
+        <div class="short_info">
+          <div class="info_title">六种鲜花的保鲜方法</div>
+          <div class="info_sub">鲜花包养，做的好的话，一朵鲜花可以发挥...</div>
+          <div class="info_date">2019-09-10</div>
+        </div>
+        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDAp57gBSi8p7_HBTCEAjjSAUBl.png"></image>
+      </view>
+      <view class="news_item" bindtap="toDetail" data-newid="2">
+        <div class="short_info">
+          <div class="info_title">风信子盆栽易打理，简单水培就可以，几盆一起就是鲜花爆盆的效果！</div>
+          <div class="info_date">2019-09-10</div>
+        </div>
+        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC_p57gBSjSruimBTDSATiTAkBl.png"></image>
+      </view>
+      <view class="news_item" bindtap="toDetail" data-newid="3">
+        <div class="short_info">
+          <div class="info_title">北方也能养南方的蝴蝶兰，照着这样打理，让鲜花陪你度过漫长冬季</div>
+          <div class="info_date">2019-09-10</div>
+        </div>
+        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8p57gBSjChrOzBDCEAjjSAUBl.png"></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+.text{
+  background: #fff;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 25px;
+  padding: 10px 5px;
+}

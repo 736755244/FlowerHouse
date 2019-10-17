@@ -1,0 +1,3 @@
+<view class="weather">
+  <text>覆盖原生组件(自定义内容)：\n{{msg.answer}}</text>
+</view>

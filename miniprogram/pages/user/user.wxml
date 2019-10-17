@@ -1,0 +1,126 @@
+<view wx:if="{{isHide}}">
+  <view wx:if="{{canIUse}}" id="readyToLogin">
+    <view class='header'>
+        <image src='../../images/icon/user-unlogin.png'></image>
+    </view>
+    <view class='content'>
+        <view>申请获取以下权限</view>
+        <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+    <button class='bottom' 
+      type='primary' 
+      open-type="getUserInfo" 
+      lang="zh_CN" 
+      bindgetuserinfo="bindGetUserInfo">
+      授权登录
+    </button>
+  </view>
+  <view wx:else>请升级微信版本</view>
+</view>
+ 
+<view style="background:#eee;" wx:else>
+  <view>
+    <view class="user-header">
+      <view class="header_img">
+        <image src="{{avatar}}"></image>
+      </view>
+      <text class="submit">{{username}}</text>
+    </view>
+
+   <view class="user_content">
+     <view class="order_info">
+        <div class="all_order" bindtap="showOrder" id="0">
+          <text>所有订单</text>
+          <image src="../../images/pictrues/right.png"></image>
+        </div>
+        <div class="all_type">
+          <div bindtap="showOrder" id="1">
+            <image src="../../images/icon/pay.png"></image>
+            <text>\n 待支付</text>
+            <span wx:if="{{count1!=0}}">{{count1}}</span>
+          </div>
+           <div bindtap="showOrder" id="2">
+            <image src="../../images/icon/paying.png"></image>
+            <text>\n 进行中</text>
+            <span wx:if="{{count2!=0}}">{{count2}}</span>
+          </div>
+           <div bindtap="showOrder" id="3">
+            <image src="../../images/icon/over.png"></image>
+            <text>\n 已完成</text>
+           <span wx:if="{{count1!=3}}">{{count3}}</span>
+          </div>
+           <div bindtap="showOrder" id="4">
+            <image src="../../images/icon/cancel.png"></image>
+            <text>\n 已取消</text>
+           <span wx:if="{{count4!=0}}">{{count4}}</span>
+          </div>
+        </div>
+      </view>
+      <view class="mes_info">
+        <view class="news_header">最新消息</view>
+        <view class="news_content">
+          <view class="news_item">
+            <view class="sub">
+              <image src="../../images/icon/default.png"></image>
+              <div class="sub_info">
+                <view>小程序服务默认数据\n</view>
+                <view>专业提供小程序服务</view>
+              </div>
+            </view>
+            <text class="comment">服务态度好！！</text>
+          </view>
+          <view wx:if="{{showmore}}">
+            <view class="news_item">
+              <view class="sub">
+                <image src="../../images/icon/default.png"></image>
+                <div class="sub_info">
+                  <view>小程序服务默认数据\n</view>
+                  <view>专业提供小程序服务</view>
+                </div>
+              </view>
+              <text class="comment">服务态度好！！</text>
+            </view>
+            <view class="news_item">
+              <view class="sub">
+                <image src="../../images/icon/default.png"></image>
+                <div class="sub_info">
+                  <view>小程序服务默认数据\n</view>
+                  <view>专业提供小程序服务</view>
+                </div>
+              </view>
+              <text class="comment">服务态度好！！</text>
+            </view>
+          </view>
+          <!-- 显示隐藏更多小心 -->
+          <view class="view-more" wx:if="{{!showmore}}" bindtap="viewmore">
+            <image src="../../images/icon/down.png"></image>
+            <text>查看更多</text>
+          </view>
+          <view class="view-more" wx:if="{{showmore}}"  bindtap="hiddenmore">
+            <image src="../../images/icon/up.png"></image>
+            <text>收起</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="my_info">
+        <view class="my_item">
+          <image src="../../images/icon/map1.png"></image>
+          <text>XX省XX市XX区XX路</text>
+        </view>
+        <view class="my_item">
+          <image src="../../images/icon/phone1.png"></image>
+          <text>13800000000</text>
+        </view>
+        <view class="my_item">
+          <image src="../../images/icon/time.png"></image>
+          <text>周一至周五 9:00-18:00</text>
+        </view>
+        <view class="my_item">
+          <image src="../../images/icon/home1.png"></image>
+         <text>致力于为消费者提供有价值的鲜花情感传递服，强大的鲜花配送体系和服务理念是鲜花优质、快速服务的保障。</text>
+        </view>
+      </view>
+    </view>
+  </view> 
+</view>

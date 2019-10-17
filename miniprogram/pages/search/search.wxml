@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 顶部搜索 -->
+  <SearchBar 
+    id="SearchBar" 
+    searchstr="{{searchstr}}" 
+    placeholder="请输入您所需要的鲜花植物"
+    bind:inputchange="inputchange" 
+    bind:cmdsearch="cmdsearch" 
+    bind:cancelsearch="cancelsearch" 
+    bind:activity_clear="activity_clear">
+  </SearchBar>
+
+  <view class="search_item">
+    <view>推荐搜索</view>
+    <view bindtap="cmdSearchForKey">
+      <div data-curtype="简约混合">简约混合</div>
+      <div data-curtype="繁花混合">繁花混合</div>
+      <div data-curtype="单品简花">单品简花</div>
+      <div data-curtype="鲜花礼盒">鲜花礼盒</div>
+      <div data-curtype="玫瑰花束">玫瑰花束</div>
+    </view>
+  </view>
+</view>

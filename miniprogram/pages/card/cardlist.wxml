@@ -1,0 +1,15 @@
+<view class="section" style="height:{{Height}}px;overflow-y:scroll;">
+  <view class="flex_con" wx:for="{{listinfo}}" wx:key="*this">
+    <div class="i_img">
+      <image src="{{item.src}}"></image>
+    </div>
+    <div class="i_con">
+      <text>{{item.name}}\n</text>
+      <text>{{item.info}}</text>
+    </div>
+    <div class="i_more">
+      <image src="../../images/pictrues/phone.png"></image>
+      <image src="../../images/pictrues/right.png" bindtap="toMoreInfo" id="{{item.id}}"></image>
+    </div>
+  </view>
+</view>

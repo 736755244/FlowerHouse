@@ -1,0 +1,21 @@
+.section{
+  height: 750px;
+  background: #eee;
+}
+.m-r-5{
+  margin-right: 5%;
+}
+.ok_img{
+  text-align: center
+}
+.ok_img button{
+  display: inline-block;
+  width: 30%;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #72B54E;
+}
+button.active{
+  background: #72B54E;
+  color: #fff;
+}

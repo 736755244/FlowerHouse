@@ -1,0 +1,7 @@
+<view>
+  <scroll-view scroll-x="true" class="guide" controlSwiper="{{controlSwiper}}">
+    <block wx:for="{{guideList}}" wx:key="*this">
+      <view class="guideitem" bindtap="chooseGuide" data-content="{{item}}">{{item}}</view>
+    </block>
+  </scroll-view>
+</view>

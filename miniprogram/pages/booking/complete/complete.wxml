@@ -1,0 +1,9 @@
+<view class="section">
+  <view class="ok_img">
+    <image src="../../../images/icon/ok.png"></image>
+    <button class="m-r-5 {{cur=='view'?'active':''}}" 
+    bindtap="changebtn" id="view">查看订单</button>
+    <button class="{{cur=='back'?'active':''}}"  
+    bindtap="changebtn" id="back">返回首页</button>
+  </view>
+</view>

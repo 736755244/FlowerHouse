@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "chat": "plugin://chatbot/chat",
+    "customMusicMessage": "/plugin/customMusicMessage/customMusicMessage",
+    "customWeatherMessage": "/plugin/customWeatherMessage/customWeatherMessage",
+    "customTextMessage": "/plugin/customTextMessage/customTextMessage",
+    "customImageMessage": "/plugin/customImageMessage/customImageMessage",
+    "customNewsMessage": "/plugin/customNewsMessage/customNewsMessage",
+    "customUnsupportedMessage": "/plugin/customUnsupportedMessage/customUnsupportedMessage",
+    "customGuideCard": "/plugin/customGuideCard/customGuideCard"
+  },
+  "navigationBarTitleText": "我的客服"
+}

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "SearchBar": "/components/searchBox/index"
+  },
+  "navigationBarTitleText": "搜索结果"
+}

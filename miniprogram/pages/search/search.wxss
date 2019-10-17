@@ -1,0 +1,21 @@
+page {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.search_item{
+  font-size: 14px;
+  padding: 15px;
+  background: #fff;
+}
+.search_item div{
+  display: inline-block;
+  padding: 5px 8px;
+  background: #eee;
+  font-size: 12px;
+  /* width: 100px;
+  height: 50px; */
+  border-radius: 50px;
+  margin:5px 10px;
+}

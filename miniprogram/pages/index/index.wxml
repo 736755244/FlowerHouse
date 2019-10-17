@@ -1,0 +1,223 @@
+<view class="container">
+  <!-- 固定按钮 -->
+  <view>
+    <div class="arrowWidget collectArrow top" id="uniqName_5_6">
+        <image class="arrow" src="../../images/icon/arrow.png"></image>
+    </div>
+    <!-- <div class="arrowWidget editArrow left" id="uniqName_5_5">
+      <image class="arrow" src="../../images/icon/arrow.png"></image>
+    </div>
+    <div class="arrowWidget menuArrow left" id="uniqName_5_7">
+       <image class="arrow" src="../../images/icon/arrow.png"></image>
+    </div> -->
+  </view>
+  <view class="more_menu">
+  
+  </view>
+  <!-- 顶部搜索 -->
+ <view bindtap="toSearch" >
+  <SearchBar
+    id="SearchBar" 
+    searchstr="" 
+    isdisable="disabled"
+    placeholder="请输入您所需要的鲜花植物">
+  </SearchBar>
+ </view>
+  <!-- banner -->
+  <swiper wx:if="{{showBanner}}"
+    class='swiper'
+    indicator-dots="{{indicatorDots}}" 
+    indicator-color="#FFF"
+    indicator-active-color = "#bc162c"
+    autoplay="{{autoplay}}" 
+    circular="{{circular}}" 
+    vertical="{{vertical}}"
+    interval="{{interval}}" 
+    duration="{{duration}}"
+    bindchange="bindchange"
+    style="height:{{imgheights[current]}}rpx;">
+    <block wx:for="{{bannerlist}}" wx:key="{{index}}">
+    <swiper-item>
+      <image 
+        src="{{item.filePath}}" 
+        data-id='{{index}}' 
+        class="slide-image" 
+        mode="widthFix" 
+        bindload="imageLoad"/>
+    </swiper-item>
+    </block>
+  </swiper>
+  <!-- 3 -->
+  <view class="mr-t-10" 
+    style="background:url('http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDDnJ7gBSjw74-pAjDuBTjIAUBl.png');background-size:100%">
+    <view class="flex-wrp">
+      <view class="flex-item">
+        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC_nZ7gBSjQsL7QBDArODxAZQ.png"></image>
+        <text>繁复之美\n花艺初始</text>
+      </view>
+      <view class="flex-item">
+        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8nZ7gBSiUmpDBBTAxOD5AZQ.png"></image>
+        <text>新人之选\n干净百搭</text>
+      </view>
+      <view class="flex-item">
+        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDAnZ7gBSig3PvFBjAuODVAZQ.png"></image>
+        <text>多种搭配\n自然简约</text>
+      </view>
+    </view>
+  </view>
+  <!-- jxdp -->
+  <view class="mr-t-10">
+    <view class="module_title hType">
+      <div class="module_bg" style="background:#fff;"> </div>
+      <div class="flex_title">
+        <span class="lines left_lines"></span>
+        <div class="for_sub_title_pos">
+          <div class="title_text main_title">精选搭配</div>
+          <div class="gap_lines"></div>
+        </div>
+        <span class="lines right_lines"></span>
+      </div>
+    </view>
+    <view class="module_content_wrapper">
+      <div class="module_bg" style="background:#fff;"></div>
+      <div class="magic-style-four">
+        <div class="magic-nav-icon">
+          <a href="javascript:;" class="flex-wrap">
+            <div class="material-part material-text">
+              <div class="module_bg" style="background:#FFFDF5;"></div>
+              <div class="title-wrap">
+                <div class="main-title">简约混合</div>
+                <text>\n</text>
+                <div class="sub-heading">3-4种花材，8-12枝花头</div>
+              </div>
+            </div>
+            <div class="material-part card1">
+            </div>
+          </a>
+        </div>
+        <div class="magic-nav-icon">
+          <a href="javascript:;" class="flex-wrap">
+            <div class="material-part material-text">
+              <div class="module_bg" style="background:#FFFDF5;"></div>
+              <div class="title-wrap">
+                <div class="main-title">繁花混合</div>
+                <text>\n</text>
+                <div class="sub-heading">4-6种花材，12枝以上</div>
+              </div>
+            </div>
+            <div class="material-part card2">
+            </div>
+          </a>
+        </div>
+        <div class="magic-nav-icon">
+          <a href="javascript:;" class="flex-wrap">
+            <div class="material-part material-text">
+              <div class="module_bg" style="background:#FFFDF5;"></div>
+              <div class="title-wrap">
+                <div class="main-title">单品简花</div>
+                <text>\n</text>
+                <div class="sub-heading">单一花材 1-30枝</div>
+              </div>
+            </div>
+            <div class="material-part card3">
+            </div>
+          </a>
+        </div>
+      </div>
+    </view>
+  </view>
+  <!-- mh -->
+  <view class="mr-t-10">
+    <view class="module_content_wrapper" style="height:700px;">
+      <div class="module_bg" style="background:#fff;"></div>
+      <div class="module_content">
+        <image class="c_img1" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCNop7gBSjEsrD4AzCWAThRQGU.png"></image>
+        <div class="module-simpleText sub_text1" style="top:39px;">
+          <text>美好触手可及</text>
+        </div>
+        <div class="module-simpleText sub_text2" style="top:92px;">
+          <text>从简单中发现美好\n至纯艺术，让收获不间断的惊喜</text>
+        </div>
+        <div class="module_btm">
+          <image class="b_img1" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCgo57gBSjq0u3EAjCGAziGA0Bl.png"></image>
+          <image class="b_img2" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCgo57gBSjq0u3EAjCGAziGA0Bl.png"></image>
+          <div class="ed_resize" style="top:270px;left:35%;">
+            <div class="editor-break-word">——————</div>
+          </div>
+          <div class="module-simpleText sub_text2" style="top:289px;">
+            <text>Varied & Delicate</text>
+          </div>
+        </div>
+      </div>
+      <div class="module_content">
+        <image class="c_img2" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCNop7gBSjEsrD4AzCWAThRQGU.png"></image>
+        <div class="module-simpleText sub_text1" style="top:399px;">
+          <text>精选鲜花礼盒</text>
+        </div>
+        <div class="module-simpleText sub_text2" style="top:462px;">
+          <text>高性价比，适合入门体验\n从简单中发现美好</text>
+        </div>
+        <div class="module_btm">
+          <view>
+            <image class="b_img3" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8p57gBSjChrOzBDCEAjjSAUBl.png"></image>
+            <div class="ed_resize" style="top:626px;left:1%;">
+              <div class="editor-break-word">————</div>
+            </div>
+            <div class="sub_text2 ed_subtitle1" style="top:650px;left:4%;">
+              <text>玫瑰花束</text>
+            </div>
+          </view>
+          <view>
+            <image class="b_img4" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC_p57gBSjSruimBTDSATiTAkBl.png"></image>
+            <div class="ed_resize" style="top:626px;left:35%;">
+              <div class="editor-break-word">————</div>
+            </div>
+            <div class="sub_text2 ed_subtitle1" style="top:650px;left:39%;">
+              <text>鲜花礼盒</text>
+            </div>
+          </view>
+          <view>
+            <image class="b_img5" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8p57gBSjChrOzBDCEAjjSAUBl.png"></image>
+            <div class="ed_resize" style="top:550px;left:77%;">
+              <div class="editor-break-word">————</div>
+            </div>
+            <div class="sub_text2 ed_subtitle1" style="top:545px;left:80%;">
+              <text>手捧玫瑰</text>
+            </div>
+          </view>
+        </div>
+      </div>
+    </view>
+  </view>
+  <!-- dmzx -->
+   <view class="mr-t-10">
+    <view class="module_title">
+      <div class="module_bg" style="background:#fff;"> </div>
+      <div class="flex_title">
+        <div class="title_text_wrap">
+          <div class="for_sub_title_pos">
+            <div class="title_text main_title">店面咨询</div>
+            <div class="gap_lines"></div>
+          </div>
+        </div>
+      </div>
+      <div class="view_more" bindtap="showall">
+        <div class="more_text">查看全部</div>
+        <image src="../../images/pictrues/right.png" style="width:20px;height:20px;"></image>
+      </div>
+    </view>
+    <view class="module_content_wrapper">
+      <div class="module_bg" style="background:#fff;"></div>
+       <div class="small-box-list" wx:for="{{dzlist}}" wx:key="*this">
+        <div class="item-box" bindtap="toDz" id="{{item.id}}">
+         <image class="img-wrapper" src="{{item.src}}"></image>
+          <div class="info">
+            <div class="name ellipsis">{{item.name}}</div><text>\n</text>
+            <div class="job ellipsis">{{item.dec}}</div>
+          </div>
+          <image class="icon-phone" src="../../images/pictrues/phone.png"></image>
+        </div>
+      </div>
+    </view>
+  </view>
+</view>

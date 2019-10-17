@@ -1,0 +1,137 @@
+div{
+  display: block;
+}
+.tab-h{
+  height: 45px;
+  width: 100%; 
+  overflow: hidden;
+  line-height: 43px;
+  font-family: 微软雅黑,'microsoft yahei',宋体,新宋体,sans-serif;
+  font-size: 14px;
+  white-space: nowrap;
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  z-index: 999;
+}
+.tab-item{
+  margin:0 10px;
+  padding: 0 10px;
+  display: inline-block;
+}
+.tab-item.active{
+  color: #F5B43E;
+  position: relative;
+  border-bottom: 2px solid #F5B43E;
+}
+.tab-content{
+  margin-top: 105rpx;
+  background: #eee;
+}
+.scoll-h{
+  height: 100%;
+}
+.tab-content image{
+  width: 100%;
+  height: 190px;
+}
+/* content */
+.order-content .order-item-wrap {
+  padding: 0 15px;
+  margin-top: 9px;
+  background-color: #fff;
+}
+.order-content .order-item-header {
+  height: 49px;
+  line-height: 49px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+.order-content .order-status {
+  color: #F5B43E;
+  float: right;
+}
+.order-content .order-item-content {
+  padding: 15px 15px 15px 0;
+  overflow: hidden;
+}
+.order-content .order-img-wrap {
+  width: 65px;
+  height: 65px;
+  margin-right: 15px;
+  float: left;
+  background: #ccc;
+}
+.order-content .order-img-wrap image{
+  width: 100%;
+  height: 100%;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.order-content .order-name{
+  font-size: 14px;
+}
+.order-content .order-abstract {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #999;
+}
+.order-content .order-price-wrap {
+  margin-top: 5px;
+}
+.selling-price {
+  font-size: 16px;
+  color: #F5B43E;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.order-content .original-price {
+  font-size: 12px;
+  color: #999;
+  text-decoration: line-through;
+}
+.order-content .order-item-footer {
+  height: 59px;
+  border-top: 1px solid #eee;
+}
+.order-content .order-btn {
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #999;
+  outline: 0;
+  font-size: 13px;
+  width: 65px;
+  height: 30px;
+  line-height: 20px;
+  float: right;
+  margin-right: 10px;
+  top: 15px;
+}
+.order-content .cancel-btn {
+  color: #999;
+}
+.order-content .complete-btn {
+  margin-left: 8px;
+  border-color: #F5B43E;
+  color: #F5B43E;
+}
+
+
+.no_order{
+  margin-top: 105rpx;
+  padding-top: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  background: #eee;
+}
+.no_order image{
+  width: 100px;
+  height: 100px;
+}
+
+
+

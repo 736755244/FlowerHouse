@@ -1,0 +1,84 @@
+<view>
+  <view style="height:{{Height}}px;overflow-y:scroll;background:#fff;">
+    <div class="card-bg" ></div>
+    <view class="card-intro">
+      <view class="intro-content">
+        <view class="firm-name">{{cur_dz.type}}</view>
+        <view class="name">{{cur_dz.name}}</view>
+        <view class="job">{{cur_dz.dec}}</view>
+        <div class="head-icon">
+          <image src="{{cur_dz.src}}"></image>
+        </div>
+      </view>
+      <view class="intro-footer">
+        <span>我的名片</span>
+        <image src="../../images/icon/ewm.png"></image>
+      </view>
+    </view>
+
+    <view class="card-middle">
+      <scroll-view scroll-x="true" class="tab-h">
+          <view 
+          class="tab-item {{currentTab==0?'active':''}}"  
+          data-current="0" 
+          bindtap="swichNav">联系我</view>
+          <view 
+          class="tab-item {{currentTab==1?'active':''}}" 
+          data-current="1" 
+          bindtap="swichNav">关于我</view>
+      </scroll-view>
+      <swiper class="tab-content" 
+      current="{{currentTab}}" duration="300" bindchange="switchTab">
+          <swiper-item>
+              <scroll-view scroll-y="true" class="scoll-h" >
+                <div class="con_info">
+                  <div class="info">13800000000</div>
+                  <div class="icon">
+                    <image src="../../images/icon/phone.png"></image>
+                  </div>
+                </div>
+                <div class="con_info">
+                  <div class="info">contact@fkadjkhsf.co</div>
+                  <div class="icon">
+                    <image src="../../images/icon/mail.png"></image>
+                  </div>
+                </div>
+                <div class="con_info">
+                  <div class="info">XX市XX区XX路XX号</div>
+                  <div class="icon">
+                    <image src="../../images/icon/map.png"></image>
+                  </div>
+                </div>
+                <div class="con_info">
+                  <div class="info">13800000000</div>
+                  <div class="icon">
+                    <image src="../../images/icon/wx.png"></image>
+                  </div>
+                </div>
+              </scroll-view>
+          </swiper-item>
+          <swiper-item>
+              <scroll-view scroll-y="true" class="scoll-h" >
+                  <text>
+                    鲜花提前预定,直营鲜花品牌「爱上鲜花」鲜花销量遥遥领先同行,在线鲜花购买.2小时免费送花上门,严选A级新鲜花材.花店认准爱上鲜花
+                  </text>
+              </scroll-view>
+          </swiper-item>
+      </swiper>
+    </view>
+
+  </view>
+  <view>
+    <div class="footer_flex">
+      <div>
+        <image src="../../images/icon/share.png"></image>
+        <text>\n分享</text>
+      </div>
+      <div bindtap="backhome">
+        <image src="../../images/icon/home.png"></image>
+        <text>\n我的公司</text>
+      </div>
+      <button>保存到通讯录</button>
+    </div>
+  </view>
+</view>

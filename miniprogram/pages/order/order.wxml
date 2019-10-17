@@ -1,0 +1,216 @@
+<view >
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view 
+        class="tab-item {{currentTab==0?'active':''}}"  
+        data-current="0" 
+        bindtap="swichNav">全部</view>
+        <view 
+        class="tab-item {{currentTab==1?'active':''}}" 
+        data-current="1" 
+        bindtap="swichNav">待支付</view>
+        <view 
+        class="tab-item {{currentTab==2?'active':''}}" 
+        data-current="2" 
+        bindtap="swichNav">进行中</view>
+        <view 
+        class="tab-item {{currentTab==3?'active':''}}" 
+        data-current="3" 
+        bindtap="swichNav">已完成</view>
+        <view 
+        class="tab-item {{currentTab==4?'active':''}}" 
+        data-current="4" 
+        bindtap="swichNav">已取消</view>
+    </scroll-view>
+    <view wx:if="{{isEmpty}}" class="no_order" style="height:{{winHeight}}rpx">
+       <image src="../../images/icon/noorder.png"></image>
+       <text>\n 还没有相关订单哦</text>
+    </view>
+    <swiper class="tab-content order-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx"  wx:if="{{!isEmpty}}">
+        <!-- 全部 -->
+        <swiper-item>
+          <scroll-view scroll-y="true" class="scoll-h" >
+              <block wx:for="{{newlist}}" wx:key="*this">
+                <view class="order-item-wrap"
+                    bindtap="btnOption"
+                    data-btntype="cancel"
+                    data-orderid="{{item.id}}"
+                    >
+                  <view class="order-item-header">
+                    <span>订单号：{{item.id}}</span>
+                    <span class="order-status">{{item.stastusname}}</span>
+                  </view>
+                  <view class="order-item-content">
+                    <div class="order-img-wrap">
+                      <image src="{{item.img}}"></image>
+                    </div>
+                    <div class="order-info-wrap">
+                      <div class="order-name ellipsis">{{item.title}}</div>
+                      <div class="order-abstract ellipsis">{{item.subtitle}}</div>
+                      <div class="order-price-wrap">
+                        <span class="selling-price">{{item.price}}</span>
+                        <span class="original-price">{{item.oldprice}}</span>
+                      </div>
+                    </div>
+                  </view>
+                  <view class="order-item-footer" wx:if="{{item.status==2}}">
+                    <button class="order-btn cancel-btn">取消预约</button>
+                  </view>
+                  <view class="order-item-footer" wx:if="{{item.status==1}}">
+                    <button class="order-btn complete-btn">去支付</button>
+                    <button class="order-btn cancel-btn">取消预约</button>
+                  </view>
+                </view>
+              </block>
+          </scroll-view>
+        </swiper-item>
+        <!-- 待支付 -->
+        <swiper-item>
+          <scroll-view scroll-y="true" class="scoll-h">
+              <block wx:for="{{newlist}}" wx:key="*this">
+                <view class="order-item-wrap"
+                    bindtap="btnOption"
+                    data-btntype="cancel"
+                    data-orderid="{{item.id}}"
+                    >
+                  <view class="order-item-header">
+                    <span>订单号：{{item.id}}</span>
+                    <span class="order-status">{{item.stastusname}}</span>
+                  </view>
+                  <view class="order-item-content">
+                    <div class="order-img-wrap">
+                      <image src="{{item.img}}"></image>
+                    </div>
+                    <div class="order-info-wrap">
+                      <div class="order-name ellipsis">{{item.title}}</div>
+                      <div class="order-abstract ellipsis">{{item.subtitle}}</div>
+                      <div class="order-price-wrap">
+                        <span class="selling-price">{{item.price}}</span>
+                        <span class="original-price">{{item.oldprice}}</span>
+                      </div>
+                    </div>
+                  </view>
+                  <view class="order-item-footer" wx:if="{{item.status==2}}">
+                    <button class="order-btn cancel-btn">取消预约</button>
+                  </view>
+                  <view class="order-item-footer" wx:if="{{item.status==1}}">
+                    <button class="order-btn complete-btn">去支付</button>
+                    <button class="order-btn cancel-btn">取消预约</button>
+                  </view>
+                </view>
+              </block>
+          </scroll-view>
+        </swiper-item>
+        <!-- 进行中 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <block wx:for="{{newlist}}" wx:key="*this">
+                  <view class="order-item-wrap"
+                    bindtap="btnOption"
+                    data-btntype="cancel"
+                    data-orderid="{{item.id}}"
+                    >
+                    <view class="order-item-header">
+                      <span>订单号：{{item.id}}</span>
+                      <span class="order-status">{{item.stastusname}}</span>
+                    </view>
+                    <view class="order-item-content">
+                      <div class="order-img-wrap">
+                        <image src="{{item.img}}"></image>
+                      </div>
+                      <div class="order-info-wrap">
+                        <div class="order-name ellipsis">{{item.title}}</div>
+                        <div class="order-abstract ellipsis">{{item.subtitle}}</div>
+                        <div class="order-price-wrap">
+                          <span class="selling-price">{{item.price}}</span>
+                          <span class="original-price">{{item.oldprice}}</span>
+                        </div>
+                      </div>
+                    </view>
+                    <view class="order-item-footer" wx:if="{{item.status==2}}">
+                    <button class="order-btn cancel-btn">取消预约</button>
+                    </view>
+                    <view class="order-item-footer" wx:if="{{item.status==1}}">
+                      <button class="order-btn complete-btn">去支付</button>
+                      <button class="order-btn cancel-btn">取消预约</button>
+                    </view>
+                  </view>
+                </block>
+            </scroll-view>
+        </swiper-item>
+        <!-- 已完成 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <block wx:for="{{newlist}}" wx:key="*this">
+                  <view class="order-item-wrap"
+                    bindtap="btnOption"
+                    data-btntype="cancel"
+                    data-orderid="{{item.id}}"
+                    >
+                    <view class="order-item-header">
+                      <span>订单号：{{item.id}}</span>
+                      <span class="order-status">{{item.stastusname}}</span>
+                    </view>
+                    <view class="order-item-content">
+                      <div class="order-img-wrap">
+                        <image src="{{item.img}}"></image>
+                      </div>
+                      <div class="order-info-wrap">
+                        <div class="order-name ellipsis">{{item.title}}</div>
+                        <div class="order-abstract ellipsis">{{item.subtitle}}</div>
+                        <div class="order-price-wrap">
+                          <span class="selling-price">{{item.price}}</span>
+                          <span class="original-price">{{item.oldprice}}</span>
+                        </div>
+                      </div>
+                    </view>
+                    <view class="order-item-footer" wx:if="{{item.status==2}}">
+                      <button class="order-btn cancel-btn">取消预约</button>
+                    </view>
+                    <view class="order-item-footer" wx:if="{{item.status==1}}">
+                      <button class="order-btn complete-btn">去支付</button>
+                      <button class="order-btn cancel-btn">取消预约</button>
+                    </view>
+                  </view>
+                </block>
+            </scroll-view>
+        </swiper-item>
+        <!-- 已取消 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <block wx:for="{{newlist}}" wx:key="*this">
+                  <view class="order-item-wrap"
+                    bindtap="btnOption"
+                    data-btntype="cancel"
+                    data-orderid="{{item.id}}"
+                    >
+                    <view class="order-item-header">
+                      <span>订单号：{{item.id}}</span>
+                      <span class="order-status">{{item.stastusname}}</span>
+                    </view>
+                    <view class="order-item-content">
+                      <div class="order-img-wrap">
+                        <image src="{{item.img}}"></image>
+                      </div>
+                      <div class="order-info-wrap">
+                        <div class="order-name ellipsis">{{item.title}}</div>
+                        <div class="order-abstract ellipsis">{{item.subtitle}}</div>
+                        <div class="order-price-wrap">
+                          <span class="selling-price">{{item.price}}</span>
+                          <span class="original-price">{{item.oldprice}}</span>
+                        </div>
+                      </div>
+                    </view>
+                    <view class="order-item-footer" wx:if="{{item.status==2}}">
+                      <button class="order-btn cancel-btn">取消预约</button>
+                    </view>
+                    <view class="order-item-footer" wx:if="{{item.status==1}}">
+                      <button class="order-btn complete-btn">去支付</button>
+                      <button class="order-btn cancel-btn">取消预约</button>
+                    </view>
+                  </view>
+                </block>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>

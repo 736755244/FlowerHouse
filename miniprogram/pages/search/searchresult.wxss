@@ -1,0 +1,144 @@
+page {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+div{
+  display: block;
+}
+#SearchBar{
+  position: fixed;
+  top:0;
+  width: 100%;
+}
+.tab-h{
+  height: 45px;
+  width: 100%; 
+  overflow: hidden;
+  line-height: 43px;
+  font-family: 微软雅黑,'microsoft yahei',宋体,新宋体,sans-serif;
+  font-size: 14px;
+  white-space: nowrap;
+  position: fixed;
+  top: 45px; 
+  left: 0; 
+  z-index: 999;
+}
+.tab-item{
+  margin:0 10px;
+  padding: 0 10px;
+  display: inline-block;
+}
+.tab-item.active{
+  position: relative;
+  border-bottom: 2px solid #F5B43E;
+}
+.tab-content{
+  margin-top: 200rpx;
+}
+.scoll-h{
+  height: 100%;
+}
+.scoll-h .tabtitle{
+  margin-left: 15px;
+  color: #F5B43E;
+  font-size: 13px;
+}
+.tab-content image{
+  width: 100%;
+  height: 190px;
+}
+.card_con{
+  padding: 15px 0;
+  margin: 0 15px;
+  border-bottom: 1px solid #eee;
+}
+.card_con .main_t{
+  font-size: 14px;
+}
+.card_con .sub_t{
+  font-size: 12px;
+  color:#333;
+}
+.f_info{
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  color:#333;
+  margin-top: 10px;
+}
+.sub_info{
+  width: 70%;
+}
+.sub_info text{
+  margin-right: 10px;
+}
+.sub_info text:first-child{
+  color: #F5B43E;
+  font-size: 14px;
+}
+.f_info button{
+  font-size: 12px;
+  width: 80px;
+  height: 25px;
+  line-height: 25px;
+  color: #fff;
+  background: #F5B43E;
+  border-radius: 20px;
+}
+/* news */
+.news{
+  background: #fff;
+}
+.news_item{
+  display: flex;
+  margin: 0 12px;
+  padding: 15px 0 15px 15px;
+  border-bottom: 1px solid #e3e3e3;
+  justify-content: space-between
+}
+.news_item image{
+   border-radius: 5px;
+  width: 30%;
+  height: 60px;
+}
+.short_info{
+  width: 78%;
+  margin-right: 2%;
+}
+.info_title{
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 5px;
+}
+.info_sub{
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 5px;
+}
+.info_date{
+  font-size: 12px;
+  color: #888;
+}
+/* quick_search */
+.search_item{
+  font-size: 14px;
+  padding: 15px;
+  background: #fff;
+}
+.search_item div{
+  display: inline-block;
+  padding: 5px 8px;
+  background: #eee;
+  font-size: 12px;
+  /* width: 100px;
+  height: 50px; */
+  border-radius: 50px;
+  margin:5px 10px;
+}
+
+.part2{
+  margin-top: 10px;
+}
