@@ -1,0 +1,31 @@
+<view>
+  <button bindtap="uploadbannerimg">上传首页轮播图</button>
+  <button bindtap="uploadstoreimg">上传店铺室内图</button>
+
+  <!-- <block wx:for="{{tempFilePaths}}" wx:key="*this">
+    <image src="{{item}}" bindtap="previewImg" data-index="{{index}}"></image>
+  </block> -->
+
+  <button bindtap="viewArtile">点击查看文章</button>
+  <view>
+    文章标题：
+    <input bindinput="inputeidt" data-id="1" value="{{title}}"></input>
+  </view>
+  <view>
+    文章摘要：
+    <input bindinput="inputeidt" data-id="2"  value="{{sub}}"></input>
+  </view>
+  <view>
+    时间：
+    <input bindinput="inputeidt" data-id="3"  value="{{date}}"></input>
+  </view>
+  <view>
+    阅读数：
+    <input bindinput="inputeidt" data-id="4"  value="{{num}}"></input>
+  </view>
+  <view>
+    文章内容
+    <textarea bindinput="inputeidt" data-id="5"  value="{{con}}"></textarea>
+  </view>
+  <button bindtap="uploadartimg">上传文章图</button>
+</view>

@@ -1,12 +1,10 @@
-// pages/custom/cusdetail.js
+const app = getApp();
+const db = wx.cloud.database();
 Page({
   data: {
+    iconpath:app.globalData.iconpath,
     Height:'',
-    imgList:[
-      "http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACD77vrlBSiAy_2nBzDuBTiQA0Bl.jpg",
-      "http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACD87vrlBSiI14beBDDuBTiQA0Bl.jpg",
-      "http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACD_7vrlBSiZu_TvBjDuBTiQA0Bl.jpg"
-    ]
+    imgList:[]
   },
   onLoad(){
     var that=this;
@@ -18,6 +16,20 @@ Page({
           Height: calc
         })
       },
+    }),
+    that.getStoreImg();
+  },
+  getStoreImg() {
+    wx.cloud.callFunction({
+      name: 'getStoreImg',
+      data: {
+        storeid: app.globalData.storeid
+      },
+      complete: res => {
+        this.setData({
+          imgList: res.result.data
+        })
+      }
     })
   }
 })

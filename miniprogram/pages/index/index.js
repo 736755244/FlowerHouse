@@ -3,6 +3,12 @@ const db = wx.cloud.database();//获取数据库
 
 Page({
   data: {
+    iconpath: app.globalData.iconpath,
+    picspath: app.globalData.picspath,
+    storeid: app.globalData.storeid,//店铺id
+    //固定按钮参数
+    laytop:true,
+    domshow:false,
     //其它
     addflag: true,  //判断是否显示搜索框右侧部分
     searchstr: '',
@@ -22,30 +28,12 @@ Page({
     //默认  
     current: 0,
     //店长list
-    dzlist:[
-      {
-        id:1,
-        name:'黄店长',
-        dec:'XX区XX路花店   8年老店',
-        src:'http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDtlJ7gBSjGrNP5BTDuBTjuBUBl.png'
-      },
-      {
-        id: 2,
-        name: '张店长',
-        dec: 'XX区XX路花店   8年老店',
-        src: 'http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDvlJ7gBSiF3OavAzDuBTjuBUBl.png'
-      },
-      {
-        id: 3,
-        name: '吴店长',
-        dec: 'XX区XX路花店   8年老店',
-        src: 'http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDylJ7gBSiU_69zMO4FOO4FQGU.png'
-      },
-    ]
+    dzlist:[]
   },
   onLoad: function() {
     var that=this;
     that.getBannerList();
+    that.getDzList();
   },
   //获取banner列表
   getBannerList(){
@@ -59,6 +47,21 @@ Page({
         that.setData({
           bannerlist: res.result.data,
           showBanner: true
+        })
+      }
+    })
+  },
+  //获取店长列表
+  getDzList(){
+    var that = this;
+    wx.cloud.callFunction({
+      name: 'getDzInfoList',
+      data: {
+        storeid:1
+      },
+      complete: res => {
+        that.setData({
+          dzlist: res.result.data
         })
       }
     })
@@ -91,30 +94,32 @@ Page({
   //店长详情
   toDz(e){
     wx.navigateTo({
-      url: '../card/card?id=' + e.currentTarget.id
+      url: '../card/card?sid='+ this.data.storeid+'&did='+ e.currentTarget.id
     })
   },
   //店长列表
   showall(){
     wx.navigateTo({
-      url: '../card/cardlist',
+      url: '../card/cardlist?storeid=' + this.data.storeid,
     })
   },
+  //显示收缩操作内容
   showmenu(){
-    //搜索方法(或者采用$('body').find()方法，下面方法得不到dom元素)
-    // self.SearchForKey = function (e) {
-    //   var layer = $("#uniqName_5_1");
-    //   var $dom = $("#uniqName_5_8");
-    //   if ($dom.hasClass("left")) {
-    //     $dom.removeClass("left").addClass("right");
-    //     layer.removeClass("moved_right").addClass("move_right");
-    //   } else {
-    //     $dom.removeClass("right").addClass("left");
-    //     layer.removeClass("move_right").addClass("moved_right");
-    //   }
-    // }
+    var isshow = this.data.domshow;
+    this.setData({
+      domshow: !isshow
+    })
+  },
+  //机器人
+  toRobot(){
+    wx.navigateTo({
+      url: '../robot/robot',
+    })
+  },
+  //系统配置
+  toConfig() {
+    wx.navigateTo({
+      url: '../config/config',
+    })
   }
 })
-
-//'http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACCRu87jBSiwpM_3BzDuBTjoAkBl.jpg'
-//'http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACCTu87jBSjwte1IMO4FOOgCQGU.jpg'

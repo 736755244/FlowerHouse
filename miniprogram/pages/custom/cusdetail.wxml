@@ -2,12 +2,12 @@
   <view class="section" style="height:{{Height}}px;overflow-y:scroll;">
     <view class="header">
       <text>店铺环境</text>
-      <image src="../../images/icon/share.png"></image>
+      <image src="{{iconpath}}share.png"></image>
     </view>
   
     <view>
       <view class="img_item" wx:for="{{imgList}}" wx:key="*this">
-        <image src="{{item}}"></image>
+        <image src="{{item.filePath}}"></image>
       </view>
     </view>
   </view>
@@ -15,11 +15,11 @@
   <view>
     <div class="footer_flex">
       <div>
-        <image src="../../images/icon/phone.png"></image>
+        <image src="{{iconpath}}phone.png"></image>
         <text>\n电话</text>
       </div>
       <div bindtap="backhome">
-        <image src="../../images/icon/map.png"></image>
+        <image src="{{iconpath}}map.png"></image>
         <text>\n地址</text>
       </div>
       <button>马上咨询</button>

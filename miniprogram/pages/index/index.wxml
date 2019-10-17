@@ -1,8 +1,8 @@
 <view class="container">
   <!-- 固定按钮 -->
   <view>
-    <div class="arrowWidget collectArrow top" id="uniqName_5_6">
-        <image class="arrow" src="../../images/icon/arrow.png"></image>
+    <div class="arrowWidget collectArrow {{domshow?'bottom':'top'}}" bindtap="showmenu">
+        <image class="arrow" src="{{iconpath}}arrow.png"></image>
     </div>
     <!-- <div class="arrowWidget editArrow left" id="uniqName_5_5">
       <image class="arrow" src="../../images/icon/arrow.png"></image>
@@ -10,9 +10,11 @@
     <div class="arrowWidget menuArrow left" id="uniqName_5_7">
        <image class="arrow" src="../../images/icon/arrow.png"></image>
     </div> -->
-  </view>
-  <view class="more_menu">
-  
+    
+    <view class="more_menu {{domshow?'move_bottom':'moved_bottom'}}" >
+      <div bindtap="toRobot"><image src="{{iconpath}}robot.png"></image></div>
+      <div bindtap="toConfig"><image src="{{iconpath}}configure.png"></image></div>
+    </view>
   </view>
   <!-- 顶部搜索 -->
  <view bindtap="toSearch" >
@@ -49,18 +51,18 @@
   </swiper>
   <!-- 3 -->
   <view class="mr-t-10" 
-    style="background:url('http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDDnJ7gBSjw74-pAjDuBTjIAUBl.png');background-size:100%">
+    style="background:url('{{picspath}}bg_1.png');background-size:100%">
     <view class="flex-wrp">
       <view class="flex-item">
-        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC_nZ7gBSjQsL7QBDArODxAZQ.png"></image>
+        <image src="{{picspath}}sm_1.png"></image>
         <text>繁复之美\n花艺初始</text>
       </view>
       <view class="flex-item">
-        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8nZ7gBSiUmpDBBTAxOD5AZQ.png"></image>
+        <image src="{{picspath}}sm_2.png"></image>
         <text>新人之选\n干净百搭</text>
       </view>
       <view class="flex-item">
-        <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDAnZ7gBSig3PvFBjAuODVAZQ.png"></image>
+        <image src="{{picspath}}sm_3.png"></image>
         <text>多种搭配\n自然简约</text>
       </view>
     </view>
@@ -131,7 +133,7 @@
     <view class="module_content_wrapper" style="height:700px;">
       <div class="module_bg" style="background:#fff;"></div>
       <div class="module_content">
-        <image class="c_img1" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCNop7gBSjEsrD4AzCWAThRQGU.png"></image>
+        <image class="c_img1" src="{{picspath}}bg_2.png"></image>
         <div class="module-simpleText sub_text1" style="top:39px;">
           <text>美好触手可及</text>
         </div>
@@ -139,8 +141,8 @@
           <text>从简单中发现美好\n至纯艺术，让收获不间断的惊喜</text>
         </div>
         <div class="module_btm">
-          <image class="b_img1" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCgo57gBSjq0u3EAjCGAziGA0Bl.png"></image>
-          <image class="b_img2" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCgo57gBSjq0u3EAjCGAziGA0Bl.png"></image>
+          <image class="b_img1" src="{{picspath}}sm_4.png"></image>
+          <image class="b_img2" src="{{picspath}}sm_4.png"></image>
           <div class="ed_resize" style="top:270px;left:35%;">
             <div class="editor-break-word">——————</div>
           </div>
@@ -150,7 +152,7 @@
         </div>
       </div>
       <div class="module_content">
-        <image class="c_img2" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCNop7gBSjEsrD4AzCWAThRQGU.png"></image>
+        <image class="c_img2" src="{{picspath}}bg_3.png"></image>
         <div class="module-simpleText sub_text1" style="top:399px;">
           <text>精选鲜花礼盒</text>
         </div>
@@ -159,7 +161,7 @@
         </div>
         <div class="module_btm">
           <view>
-            <image class="b_img3" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8p57gBSjChrOzBDCEAjjSAUBl.png"></image>
+            <image class="b_img3" src="{{picspath}}sm_5.png"></image>
             <div class="ed_resize" style="top:626px;left:1%;">
               <div class="editor-break-word">————</div>
             </div>
@@ -168,7 +170,7 @@
             </div>
           </view>
           <view>
-            <image class="b_img4" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC_p57gBSjSruimBTDSATiTAkBl.png"></image>
+            <image class="b_img4" src="{{picspath}}sm_6.png"></image>
             <div class="ed_resize" style="top:626px;left:35%;">
               <div class="editor-break-word">————</div>
             </div>
@@ -177,7 +179,7 @@
             </div>
           </view>
           <view>
-            <image class="b_img5" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8p57gBSjChrOzBDCEAjjSAUBl.png"></image>
+            <image class="b_img5" src="{{picspath}}sm_7.png"></image>
             <div class="ed_resize" style="top:550px;left:77%;">
               <div class="editor-break-word">————</div>
             </div>
@@ -203,19 +205,19 @@
       </div>
       <div class="view_more" bindtap="showall">
         <div class="more_text">查看全部</div>
-        <image src="../../images/pictrues/right.png" style="width:20px;height:20px;"></image>
+        <image src="{{iconpath}}right.png" style="width:20px;height:20px;"></image>
       </div>
     </view>
     <view class="module_content_wrapper">
       <div class="module_bg" style="background:#fff;"></div>
        <div class="small-box-list" wx:for="{{dzlist}}" wx:key="*this">
-        <div class="item-box" bindtap="toDz" id="{{item.id}}">
-         <image class="img-wrapper" src="{{item.src}}"></image>
+        <div class="item-box" bindtap="toDz" id="{{item._id}}">
+         <image class="img-wrapper" src="{{item.avator}}"></image>
           <div class="info">
             <div class="name ellipsis">{{item.name}}</div><text>\n</text>
-            <div class="job ellipsis">{{item.dec}}</div>
+            <div class="job ellipsis">{{item.desc_sub}}</div>
           </div>
-          <image class="icon-phone" src="../../images/pictrues/phone.png"></image>
+          <image class="icon-phone" src="{{iconpath}}phone.png"></image>
         </div>
       </div>
     </view>

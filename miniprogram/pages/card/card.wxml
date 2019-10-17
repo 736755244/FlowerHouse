@@ -5,14 +5,14 @@
       <view class="intro-content">
         <view class="firm-name">{{cur_dz.type}}</view>
         <view class="name">{{cur_dz.name}}</view>
-        <view class="job">{{cur_dz.dec}}</view>
+        <view class="job">{{cur_dz.desc_sub}}</view>
         <div class="head-icon">
-          <image src="{{cur_dz.src}}"></image>
+          <image src="{{cur_dz.avator}}"></image>
         </div>
       </view>
       <view class="intro-footer">
         <span>我的名片</span>
-        <image src="../../images/icon/ewm.png"></image>
+        <image src="{{iconpath}}ewm.png"></image>
       </view>
     </view>
 
@@ -32,27 +32,27 @@
           <swiper-item>
               <scroll-view scroll-y="true" class="scoll-h" >
                 <div class="con_info">
-                  <div class="info">13800000000</div>
+                  <div class="info">{{cur_dz.phone}}</div>
                   <div class="icon">
-                    <image src="../../images/icon/phone.png"></image>
+                    <image src="{{iconpath}}phone.png"></image>
                   </div>
                 </div>
                 <div class="con_info">
-                  <div class="info">contact@fkadjkhsf.co</div>
+                  <div class="info">{{cur_dz.mail}}</div>
                   <div class="icon">
-                    <image src="../../images/icon/mail.png"></image>
+                    <image src="{{iconpath}}mail.png"></image>
                   </div>
                 </div>
                 <div class="con_info">
-                  <div class="info">XX市XX区XX路XX号</div>
+                  <div class="info">{{cur_dz.location}}</div>
                   <div class="icon">
-                    <image src="../../images/icon/map.png"></image>
+                    <image src="{{iconpath}}map.png"></image>
                   </div>
                 </div>
                 <div class="con_info">
-                  <div class="info">13800000000</div>
+                  <div class="info">{{cur_dz.weixin}}</div>
                   <div class="icon">
-                    <image src="../../images/icon/wx.png"></image>
+                    <image src="{{iconpath}}wx.png"></image>
                   </div>
                 </div>
               </scroll-view>
@@ -60,7 +60,7 @@
           <swiper-item>
               <scroll-view scroll-y="true" class="scoll-h" >
                   <text>
-                    鲜花提前预定,直营鲜花品牌「爱上鲜花」鲜花销量遥遥领先同行,在线鲜花购买.2小时免费送花上门,严选A级新鲜花材.花店认准爱上鲜花
+                   {{cur_dz.desc_all}}
                   </text>
               </scroll-view>
           </swiper-item>
@@ -71,11 +71,11 @@
   <view>
     <div class="footer_flex">
       <div>
-        <image src="../../images/icon/share.png"></image>
+        <image src="{{iconpath}}share.png"></image>
         <text>\n分享</text>
       </div>
       <div bindtap="backhome">
-        <image src="../../images/icon/home.png"></image>
+        <image src="{{iconpath}}home.png"></image>
         <text>\n我的公司</text>
       </div>
       <button>保存到通讯录</button>

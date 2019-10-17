@@ -1,6 +1,6 @@
 <view class="section">
   <view class="top_img">
-    <image src="http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACCPu87jBSiOuNzuBzDuBTjoAkBl.jpg"></image>
+    <image src="{{picspath}}store_1.jpg"></image>
   </view>
 
   <view class="m-t-10">
@@ -11,22 +11,22 @@
       <view>
         <div class="con_flex">
           <text class="half">一直以热忱周到的服务满足每一位顾客，我店不断出去学习新的花束包装及插花艺术，提高自我，紧跟时尚。</text>
-          <image class="half" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDsrJ7gBSjGtZWhAjCEAjiEAkBl.png"></image>
+          <image class="half" src="{{picspath}}store_2.png"></image>
         </div>
          <div class="con_flex">
           <text class="half">致力于为消费者提供有价值的鲜花情感传递服，强大的鲜花配送体系和服务理念是鲜花优质、快速服务的保障。</text>
-          <image class="half" src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDurJ7gBSj0l7StAzCEAjiEAkBl.png"></image>
+          <image class="half" src="{{picspath}}store_3.png"></image>
         </div>
       </view>
     </view>
   </view>
 
   <view class="m-t-10 p-20">
-    <image src="http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACD77vrlBSiAy_2nBzDuBTiQA0Bl.jpg" bindtap="toDetail"></image>
+    <image src="{{tempUrl}}" bindtap="toDetail"></image>
   </view>
 
    <view class="m-t-10 p-20">
-    <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDYrp7gBSiQ4sucBTCxBTjhAkBl.png"></image>
+    <image src="{{picspath}}store_4.png"></image>
     <div class="xh_abs">
       <text>鲜花养护\n</text>
       <text>花之美需精心养护\n</text>

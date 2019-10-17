@@ -1,49 +1,16 @@
-// pages/card/card.js
+const app=getApp();
+const db = wx.cloud.database();
 Page({
   data: {
+    iconpath: app.globalData.iconpath,
     Height:'',
     currentTab: 0,
     id:0,//默认当前店长id
-    dzlist: [
-      {
-        id: 1,
-        type:'鲜花植物',
-        name: '黄店长',
-        dec: 'XX区XX路花店   8年老店',
-        src: 'http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDtlJ7gBSjGrNP5BTDuBTjuBUBl.png'
-      },
-      {
-        id: 2,
-        type: '鲜花植物',
-        name: '张店长',
-        dec: 'XX区XX路花店   8年老店',
-        src: 'http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDvlJ7gBSiF3OavAzDuBTjuBUBl.png'
-      },
-      {
-        id: 3,
-        type: '鲜花植物',
-        name: '吴店长',
-        dec: 'XX区XX路花店   8年老店',
-        src: 'http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDylJ7gBSiU_69zMO4FOO4FQGU.png'
-      },
-    ],
+    dzlist: [],
     cur_dz:{}//当前店长信息
   },
-  onLoad(options) {
+  onLoad(option) {
     var that = this;
-    //获取当前店长id
-    that.setData({
-      id: options.id
-    });
-    for (var i=0;i<that.data.dzlist.length;i++){
-      var item = that.data.dzlist[i];
-      if (item.id == options.id){
-        that.setData({
-          cur_dz: item
-        })
-        break;
-      }
-    }
     //高度自适应
     wx.getSystemInfo({
       success: function (res) {
@@ -54,6 +21,24 @@ Page({
         })
       }
     });
+    //
+    that.getDzInfo(parseInt(option.sid), option.did);
+  },
+  //获取详细信息
+  getDzInfo(sid,did){
+    var that=this;
+    wx.cloud.callFunction({
+      name: 'getDzInfo',
+      data: {
+        sid: sid,
+        did: did
+      },
+      complete: res => {
+        that.setData({
+          cur_dz:res.result.data[0]
+        })
+      }
+    })
   },
   // 滚动切换标签样式
   switchTab: function (e) {

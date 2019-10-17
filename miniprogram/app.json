@@ -10,6 +10,7 @@
     "pages/user/user",
     "pages/news/news",
     "pages/robot/robot",
+    "pages/config/config",
     "pages/news/newsdetail",
     "pages/search/search",
     "pages/search/searchresult",
@@ -67,12 +68,6 @@
         "iconPath": "images/icon/4.png",
         "selectedIconPath": "images/icon/3_1.png",
         "text": "我的"
-      },
-      {
-        "pagePath": "pages/robot/robot",
-        "iconPath": "images/icon/robot.png",
-        "selectedIconPath": "images/icon/robot_1.png",
-        "text": "客服"
       }
     ]
   }

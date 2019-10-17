@@ -1,44 +1,45 @@
-// pages/card/cardlist.js
+const app=getApp();
 Page({
   data: {
+    iconpath: app.globalData.iconpath,
+    storeid:0,
     Height:'',
-    listinfo:[
-      {
-        id: 1,
-        name:'黄店长',
-        info:'xx路x店  8年店长',
-        src:"http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDtlJ7gBSjGrNP5BTDuBTjuBUBl.png"
-      },
-      {
-        id: 2,
-        name: '张店长',
-        info: 'xx路x店  8年店长',
-        src: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDylJ7gBSiU_69zMO4FOO4FQGU.png"
-      },
-      {
-        id: 3,
-        name: '王店长',
-        info: 'xx路x店  8年店长',
-        src: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDvlJ7gBSiF3OavAzDuBTjuBUBl.png"
-      }
-    ]
+    listinfo:[]
   },
-  onLoad(){
+  onLoad(option){
     var that = this;
-    //  高度自适应
+    //高度自适应
     wx.getSystemInfo({
       success: function (res) {
         var clientHeight = res.windowHeight
         var calc = clientHeight;
         that.setData({
-          Height: calc
+          Height: calc,
+          storeid: option.storeid
         });
       }
     });
+    that.getDzList(parseInt(option.storeid));
   },
+  //获取店长列表
+  getDzList(sid) {
+    var that = this;
+    wx.cloud.callFunction({
+      name: 'getDzInfoList',
+      data: {
+        storeid: sid
+      },
+      complete: res => {
+        that.setData({
+          listinfo: res.result.data
+        })
+      }
+    })
+  },
+  //详情
   toMoreInfo(e){
     wx.navigateTo({
-      url: '../card/card?id=' + e.currentTarget.id
+      url: '../card/card?sid=' + this.data.storeid+'&did='+e.currentTarget.id
     })
   }
 })
