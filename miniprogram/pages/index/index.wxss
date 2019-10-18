@@ -1,3 +1,31 @@
+/* start */
+#readyToLogin .header {
+  margin: 90rpx 0 90rpx 50rpx;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  width: 650rpx;
+  height: 300rpx;
+  line-height: 450rpx;
+}
+#readyToLogin .header image {
+  width: 200rpx;
+  height: 200rpx;
+}
+#readyToLogin .content {
+  margin-left: 50rpx;
+  margin-bottom: 90rpx;
+}
+#readyToLogin .content text {
+  display: block;
+  color: #9d9d9d;
+  margin-top: 40rpx;
+}
+#readyToLogin .bottom {
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+}
+/* end */
 page {
   background: #f6f6f6;
   display: flex;
@@ -86,13 +114,13 @@ div{
   bottom: 55px;
   z-index: 99;
   background: #fff;
-  opacity: .5;
+  opacity: .6;
   text-align: center;
 }
 .more_menu image{
-  width: 25px;
-  height: 25px;
-  margin-top: 5px;
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
 }
 /* 轮播 */
 .swiper image {

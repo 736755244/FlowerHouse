@@ -2,18 +2,114 @@ const app=getApp();
 const db=wx.cloud.database();
 var util = require('../../utils/util.js');
 Page({
-  data: {
+  data: {  
+    // 初始化警告
+    displayWarn: 'display:none',
     tempFilePaths: [],
-    tempFilePath:'',
     storeid: app.globalData.storeid,
+    username: '',
     title:'',
-    sub:'',
+    subtitle:'',
     date: util.formatTime(new Date()),
-    num:'',
-    con:''
+    readnum:'',
+    content: '',
+    coverimg:''
   },
+  onLoad(){
+    //初始化验证规则
+    this.initValidate();
+    //获取当前操作人
+    this.setData({
+      username: app.globalData.userinfo.username||'admin'
+    })
+  },
+  /*表单-验证字段*/
+  initValidate() {
+    /*(配置规则)*/
+    const rules = {
+      title: {
+        required: true,
+        rangelength: [1, 20]
+      },
+      subtitle: {
+        required: true,
+        rangelength: [1, 10]
+      },
+      readnum: {
+        required: true,
+        number:true
+      },
+      content: {
+        required: true,
+        rangelength: [50, 1000]
+      },
+      coverimg:{
+        required: true
+      }
+    }
+    // 验证字段的提示信息，若不传则调用默认的信息
+    const messages = {
+      title: {
+        required: '请输入文章标题',
+        rangelength: '标题限制为1~10个字符'
+      },
+      subtitle: {
+        required: '请输入文章简介',
+        rangelength: '简介限制为1~20个字符',
+      },
+      readnum: {
+        required: '请输入阅读数量',
+        number:'阅读数量必须是数字'
+      },
+      content: {
+        required: '请输入文章内容',
+        rangelength: '文章内容限制为50~1000个字符'
+      },
+      coverimg:{
+        required: '请上传封面'
+      }
+    };
+
+    // 创建实例对象
+    this.WxValidate = app.WxValidate(rules, messages)
+
+    /*** 也可以自定义验证规则*/
+    // this.WxValidate.addMethod('assistance', (value, param) => {
+    //   return this.WxValidate.optional(value) || (value.length >= 1 && value.length <= 2)
+    // }, '提示语句')
+  },
+  submitForm(e) {
+    /*(表单提交校验)*/
+    const params = e.detail.value;
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      // this.showModal(error);
+      this.showWarnInfo(error)
+      return false
+    }
+    /** 这里添写验证成功以后的逻辑**/
+    this.addArticle();
+  },
+  //验证失败提示信息弹框
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false,
+    })
+  },
+  /*表单验证->(可自定义验证形式)*/
+  showWarnInfo(error) {
+    // 当前page是this对象
+    let page = this;
+    // 延时时间等待
+    let delayTime = 1;
+    // 延时等待毫秒,现设置为1000
+    let delayMillsecond = 2000;
+    // 调用显示警告函数
+    showWran(page, error, delayTime, delayMillsecond);
+  },
+  //改变文本值
   inputeidt(e){
-    console.log(new Date());
     let id = e.currentTarget.dataset.id;
     var value = e.detail.value;
     if(id=="1"){
@@ -23,22 +119,22 @@ Page({
     }
     if (id == "2") {
       this.setData({
-        sub: value
+        subtitle: value
       })
     }
     if (id == "4") {
       this.setData({
-        num: value
+        readnum: value
       })
     }
     if (id == "5") {
       this.setData({
-        con: value
+        content: value
       })
     }
   },
-  //上传文章缩略图
-  uploadartimg() {
+  //选择文章缩略图
+  chooseArticleimg() {
     let that = this;
     wx.chooseImage({
       count: 1, // 默认9
@@ -47,54 +143,59 @@ Page({
         that.setData({
           tempFilePaths: tempFilePaths
         })
-        //上传
-        for (var i = 0; i < tempFilePaths.length; i++) {
-          let item = tempFilePaths[i];
-          let filename = item.split('.')[item.split('.').length - 2].slice(0, 5);//随机文件名称
-          wx.cloud.uploadFile({
-            cloudPath: 'artile/' + filename,
-            filePath: item, // 文件路径
-            success: res => {
-              //存入数据库
-              that.setData({
-                tempFilePath: res.fileID
-              })
-            },
-            fail: err => {
-              // handle error
-              console.log(err);
-            }
-          })
-        }
+        that.uploadArticleimg();
       }
     })
   },
-  viewArtile(){
-    var sid=this.data.storeid,
-    title=this.data.title,
-    sub=this.data.sub,
-    date=this.data.date,
-    num=this.data.num,
-    con=this.data.con,
-    tfp = this.data.tempFilePath;
+  //上传到服务器
+  uploadArticleimg(){
+    //上传图片到服务器
+    let item = this.data.tempFilePaths[0];
+    let filename = item.split('.')[item.split('.').length - 2].slice(0, 5);//随机文件名称
+    wx.cloud.uploadFile({
+      cloudPath: 'artile/' + filename,
+      filePath: item, // 文件路径
+      success: res => {
+        //赋值
+        this.setData({
+          coverimg:res.fileID
+        })
+        wx.showToast({
+          title: '上传成功',
+        })
+      },
+      fail: err => {
+        console.log(err);
+      }
+    })
+  },
+  //新增文章
+  addArticle(){
+    wx.hideToast();
     var postdate = {
-      storeid: sid,
-      title: title,
-      sub_title: sub,
-      date: date,
-      readnum: num,
-      content: con,
-      filepath: tfp
+      storeid: this.data.storeid,
+      title: this.data.title,
+      sub_title: this.data.subtitle,
+      date: this.data.date,
+      readnum: parseInt(this.data.readnum),
+      content: this.data.content,
+      filepath: this.data.coverimg
     };
-    console.log(postdate);
-    //storeid imgpath title  sub date num con
     db.collection('store_artile').add({
       data: postdate,
       success: function (res) {
-        //console.log(res)
+        wx.showToast({
+          title: '新增成功',
+        });
+        this.setData({
+          title:'',
+          subtitle:'',
+          readnum:'',
+          content:'',
+          coverimg:''
+        })
       },
       err: function (err) {
-        //console.log(err);
       }
     })
 
@@ -126,8 +227,6 @@ Page({
             }
           })
         }
-
-
       }
     })
   },
@@ -176,7 +275,7 @@ Page({
       }
     })
   },
-  //将图片路径存入数据库
+  //更新数据-轮播图
   AddOrUpdateBannerImage(fileID, type) {
     db.collection('banner_img').add({
       data: {
@@ -185,12 +284,16 @@ Page({
       },
       success: function (res) {
         //console.log(res)
+        wx.showToast({
+          title: '上传成功',
+        })
       },
       err: function (err) {
         //console.log(err);
       }
     })
   },
+  //更新数据-门店图片
   AddOrUpdateStoreImage(fileID, sid) {
     db.collection('store_img').add({
       data: {
@@ -199,6 +302,9 @@ Page({
       },
       success: function (res) {
         //console.log(res)
+        wx.showToast({
+          title: '上传成功',
+        })
       },
       err: function (err) {
         //console.log(err);
@@ -206,3 +312,22 @@ Page({
     })
   }
 })
+
+//定义错误提示的相关信息
+function showWran(page, error, delayTime, delayMillsecond) {
+  let timesRun = 0;
+  let interval = setInterval(function () {
+    timesRun += delayTime;
+    if (timesRun === delayTime) {
+      clearInterval(interval);
+    }
+    page.setData({
+      warnInfo: error.msg,
+      displayWarn: 'display:none'
+    });
+  }, delayMillsecond);
+  page.setData({
+    warnInfo: error.msg,
+    displayWarn: 'display:block'
+  });
+}

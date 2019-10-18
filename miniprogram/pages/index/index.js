@@ -1,17 +1,18 @@
 const app = getApp();
 const db = wx.cloud.database();//获取数据库
+var util = require('../../utils/util.js');
 
 Page({
   data: {
     iconpath: app.globalData.iconpath,
     picspath: app.globalData.picspath,
     storeid: app.globalData.storeid,//店铺id
+    //判断小程序的API，回调，参数，组件等是否在当前版本可用。
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    isHide: false,
     //固定按钮参数
     laytop:true,
     domshow:false,
-    //其它
-    addflag: true,  //判断是否显示搜索框右侧部分
-    searchstr: '',
     //轮播图参数
     bannerlist: [],
     showBanner:false,
@@ -32,8 +33,109 @@ Page({
   },
   onLoad: function() {
     var that=this;
+    that.getSettingInfo();
     that.getBannerList();
     that.getDzList();
+  },
+  //获取授权信息
+  getSettingInfo(){
+    var that = this;
+    // 查看是否授权
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function (res) {
+              app.globalData.userinfo.username = res.userInfo.nickName;
+              app.globalData.userinfo.avator = res.userInfo.avatarUrl;
+              that.setData({
+                isHide: false
+              });
+              //登录
+              wx.login({
+                success: res => {
+                  // 获取到用户的 code 之后：res.code
+                  // 可以传给后台，再经过解析获取用户的 openid
+                  //此处调用云函数获取相关信息
+                  wx.cloud.callFunction({
+                    name: 'login',
+                    complete: res => {
+                      //调用登录日志
+                      wx.cloud.callFunction({
+                        name: 'addLoginInfo',
+                        data: {
+                          logName: app.globalData.userinfo.username,
+                          logDate: util.formatTime(new Date())
+                        },
+                        complete: res => {
+                        }
+                      })
+                    }
+                  })
+                }
+              });
+            }
+          });
+        } else {
+          // 用户没有授权
+          // 改变 isHide 的值，显示授权页面
+          that.setData({
+            isHide: true
+          });
+        }
+      }
+    })
+  },
+
+  //点击获取授权，新版不支持打开弹出授权窗口
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      var that = this;
+      app.globalData.userinfo.username = e.detail.userInfo.nickName;
+      app.globalData.userinfo.avator = e.detail.userInfo.avatarUrl;
+      //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+      that.setData({
+        isHide: false
+      });
+      //调研登录
+      wx.login({
+        success: res => {
+          // 获取到用户的 code 之后：res.code
+          // 可以传给后台，再经过解析获取用户的 openid
+          //此处调用云函数获取相关信息
+          wx.cloud.callFunction({
+            name: 'login',
+            complete: res => {
+              //调用登录日志
+              wx.cloud.callFunction({
+                name: 'addLoginInfo',
+                data: {
+                  logName: app.globalData.userinfo.username,
+                  logDate: util.formatTime(new Date())
+                },
+                complete: res => {
+                }
+              })
+            }
+          })
+        }
+      });
+    } else {
+      //用户按了拒绝按钮
+      wx.showModal({
+        title: '警告',
+        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+        showCancel: false,
+        confirmText: '返回授权',
+        success: function (res) {
+          // 用户没有授权成功，不需要改变 isHide 的值
+          if (res.confirm) {
+            console.log('用户点击了“返回授权”');
+          }
+        }
+      });
+    }
   },
   //获取banner列表
   getBannerList(){

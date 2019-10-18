@@ -1,4 +1,68 @@
 button{
-  width: 150px;
+  color: #fff;
+  background: #F5B43E;
+  font-size: 14px;
+}
+button.btnupload{
+  width: 30%;
+}
+button.btnOperator{
+  width: 60%;
+}
+.container{
+  margin: 10px;
+}
+.storeinfo{
   font-size: 13px;
+  background: #fff;
+}
+
+/* 新增文章 */
+.mt-20{
+  margin-top: 20px;
+}
+.b-item{
+  padding: 10px 10px;
+  background: #fff;
+  position: relative;
+  border: 1px solid #F5B43E;
+  font-size: 13px;
+}
+.input_info{
+  margin-bottom: 15px;
+  width: 100%;
+}
+.item-must {
+  color: red;
+  vertical-align: middle;
+  margin-right: 5px;
+  display: inline-block;
+}
+.input_info input,.input_info textarea {
+  width: 95%;
+  background: #f7f7f7;
+  border-color: #f7f7f7;
+  color: #353535;
+  padding: 10px;
+}
+.input_info textarea{
+  min-height: 100px;
+}
+.pre_img{
+  text-align: center;
+}
+
+/* 错误提示 */
+.wran-tips {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  padding: 2%;
+  width: 100%;
+  background-color: #f00;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 99;
 }

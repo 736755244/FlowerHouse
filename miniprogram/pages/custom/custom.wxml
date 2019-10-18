@@ -1,3 +1,7 @@
+<!-- 提示警告! -->
+<view class='wran-tips' style='{{displayWarn}}'>
+  <text>{{warnInfo}}</text>
+</view>
 <view class="section">
   <view class="top_img">
     <image src="{{picspath}}store_1.jpg"></image>
@@ -36,30 +40,43 @@
 
   </view>
 
-  <view class="m-t-10 p-20">
+  <view class="m-t-10 p-20 form">
+   <form bindsubmit="addMessage">
     <view class="input_info">
       <span class="item-must">*</span>
       <text>姓名：</text>
-      <input placeholder="请输入您的姓名"></input>
+      <input placeholder="请输入您的姓名" 
+      bindinput="inputedit" data-id="1" name="name" value="{{name}}"></input>
     </view>
     <view class="input_info">
       <span class="item-must">*</span>
       <text>电话：</text>
-      <input placeholder="请输入您的电话"></input>
+      <input placeholder="请输入您的电话" 
+      bindinput="inputedit" data-id="2" name="tel" value="{{tel}}"></input>
     </view>
     <view class="input_info">
       <span class="item-must">*</span>
       <text>图片上传：</text>
-      <input placeholder="请上传所需要的图片"></input>
+      <button bindtap="chooseimg" class="btnupload">上传</button>
+      <input value="{{coverimg}}" name="coverimg" hidden="hidden"></input>
+      <view class="pre_img" wx:if="{{tempFilePaths.length!=0}}">
+        <text>\n图片预览：\n</text>
+        <block wx:for="{{tempFilePaths}}" wx:key="*this">
+          <image src="{{item}}" bindtap="previewImg" data-index="{{index}}"></image>
+        </block>
+      </view>
     </view>
     <view class="input_info">
       <span class="item-must">*</span>
       <text>留言：</text>
-      <textarea placeholder="请输入您想咨询的内容"></textarea>
+      <textarea 
+      placeholder="请输入您想咨询的内容" 
+      bindinput="inputedit" data-id="3" name="message" value="{{message}}"></textarea>
     </view>
     <view class="input_info">
-      <button>马上提交</button>
+      <button form-type="submit" class="btnOperator">马上提交</button>
     </view>
+   </form>
   </view>
 
 </view>

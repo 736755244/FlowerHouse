@@ -58,6 +58,10 @@
   background: transparent;
   margin: 0 0;
 }
+.form{
+  border: 1px solid #F5B43E;
+  padding: 10px;
+}
 .input_info{
   margin-bottom: 15px;
 }
@@ -68,22 +72,38 @@
   display: inline-block;
 }
 .input_info input,.input_info textarea {
-  width: 100%;
+  width: 95%;
   background: #f7f7f7;
   border-color: #f7f7f7;
   color: #353535;
   font-size: 14px;
   padding: 10px;
 }
-.input_info input{
-  /* height: 40px; */
-}
 .input_info textarea{
   min-height: 100px;
 }
-.input_info button{
-  width: 80%;
+button{
   color: #fff;
   background: #F5B43E;
   font-size: 14px;
+}
+button.btnupload{
+  width: 30%;
+}
+button.btnOperator{
+  width: 60%;
+}
+/* 错误提示 */
+.wran-tips {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  padding: 2%;
+  width: 100%;
+  background-color: #f00;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 99;
 }

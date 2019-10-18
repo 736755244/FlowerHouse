@@ -1,11 +1,17 @@
-// pages/news/newsdetail.js
+const app = getApp();
+const db = wx.cloud.database();
 Page({
   data: {
-    winHeight: "",//窗口高度
+    winHeight: "",
+    title:'',
+    date:'',
+    readnum:'',
+    content:''
   },
-  onLoad(options){
-    var newsid = options.id;//文章编号
+  onLoad(options) {
     var that = this;
+    //获取页面信息
+    that.getNewInfo(options.id);
     //高度自适应
     wx.getSystemInfo({
       success: function (res) {
@@ -18,5 +24,33 @@ Page({
         });
       }
     });
+  },
+  getNewInfo(id){
+    var that=this;
+    db.collection('store_artile')
+    .where({
+      _id:id
+    }).get({
+      success: function (res) {
+        that.setData({
+          title:res.data[0].title,
+          date: res.data[0].date,
+          readnum: res.data[0].readnum,
+          content: res.data[0].content
+        })
+        //阅读量加1
+        that.addYdNum(id);
+      }
+    })
+  },
+  addYdNum(id){
+    var num = parseInt(this.data.readnum)+1;
+    db.collection('store_artile')
+    .doc(id)
+    .update({
+      data: {
+        readnum: num
+      }
+    })
   }
 })

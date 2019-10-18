@@ -1,31 +1,64 @@
-<view>
-  <button bindtap="uploadbannerimg">上传首页轮播图</button>
-  <button bindtap="uploadstoreimg">上传店铺室内图</button>
+<!-- 提示警告! -->
+<view class='wran-tips' style='{{displayWarn}}'>
+  <text>{{warnInfo}}</text>
+</view>
+<view class="container">
+  <view class="storeinfo">
+    <text>当前门店编号：{{storeid}}\n</text>
+    <text>当前操作人：{{username}}</text>
+  </view>
+  <view class="b-item mt-20">
+    <text>首页轮播图</text>
+    <button bindtap="uploadbannerimg" class="btnupload">上传</button>
+  </view>
+   <view class="b-item mt-20">
+    <text>店铺室内图</text>
+    <button bindtap="uploadstoreimg" class="btnupload">上传</button>
+  </view>
+  
 
   <!-- <block wx:for="{{tempFilePaths}}" wx:key="*this">
     <image src="{{item}}" bindtap="previewImg" data-index="{{index}}"></image>
   </block> -->
 
-  <button bindtap="viewArtile">点击查看文章</button>
-  <view>
-    文章标题：
-    <input bindinput="inputeidt" data-id="1" value="{{title}}"></input>
+  <view class="b-item mt-20">
+    <form bindsubmit="submitForm">
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>文章标题：</text>
+        <input placeholder="请输入文章标题" name="title" bindinput="inputeidt" data-id="1" value="{{title}}"></input> 
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>文章摘要：</text>
+        <input placeholder="请输入文章摘要" name="subtitle" bindinput="inputeidt" data-id="2" value="{{subtitle}}"></input>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>阅读数：</text>
+        <input placeholder="请输入文章阅读数" name="readnum" bindinput="inputeidt" data-id="4" value="{{readnum}}"></input>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>文章内容</text>
+        <textarea placeholder="请输入文章内容" name="content" bindinput="inputeidt" data-id="5" value="{{content}}"></textarea>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>文章封面</text>
+        <button bindtap="chooseArticleimg" class="btnupload">上传</button>
+        <input value="{{coverimg}}" name="coverimg" hidden="hidden"></input>
+        <view class="pre_img" wx:if="{{tempFilePaths.length!=0}}">
+          <text>\n图片预览：\n</text>
+          <block wx:for="{{tempFilePaths}}" wx:key="*this">
+            <image src="{{item}}" bindtap="previewImg" data-index="{{index}}"></image>
+          </block>
+        </view>
+      </view>
+      <view class="input_info">
+        <button formType="submit" class="btnOperator">新增文章</button>
+      </view>
+    </form>
   </view>
-  <view>
-    文章摘要：
-    <input bindinput="inputeidt" data-id="2"  value="{{sub}}"></input>
-  </view>
-  <view>
-    时间：
-    <input bindinput="inputeidt" data-id="3"  value="{{date}}"></input>
-  </view>
-  <view>
-    阅读数：
-    <input bindinput="inputeidt" data-id="4"  value="{{num}}"></input>
-  </view>
-  <view>
-    文章内容
-    <textarea bindinput="inputeidt" data-id="5"  value="{{con}}"></textarea>
-  </view>
-  <button bindtap="uploadartimg">上传文章图</button>
+
 </view>

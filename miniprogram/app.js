@@ -1,12 +1,20 @@
 //app.js
 var plugin = requirePlugin("chatbot");
+import WxValidate from "./utils/WxValidate";
 App({
   //全局变量
   globalData: {
     iconpath: "https://7a61-zadmin-674aa1-1300199721.tcb.qcloud.la/icon/",
     picspath: "https://7a61-zadmin-674aa1-1300199721.tcb.qcloud.la/pics/",
-    storeid:1
+    storeid:1,
+    userinfo:{
+      username:'',
+      avator:'',
+      openid:''
+    }
   },
+  //
+  WxValidate: (rules, messages) => new WxValidate(rules, messages),
   onLaunch: function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
