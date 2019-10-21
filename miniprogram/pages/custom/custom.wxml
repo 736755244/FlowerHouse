@@ -41,7 +41,7 @@
   </view>
 
   <view class="m-t-10 p-20 form">
-   <form bindsubmit="addMessage">
+   <form bindsubmit="submitForm">
     <view class="input_info">
       <span class="item-must">*</span>
       <text>姓名：</text>

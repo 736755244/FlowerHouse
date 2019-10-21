@@ -11,7 +11,7 @@
         <view 
         class="tab-item {{currentTab==2?'active':''}}" 
         data-current="2" 
-        bindtap="swichNav">进行中</view>
+        bindtap="swichNav">已支付</view>
         <view 
         class="tab-item {{currentTab==3?'active':''}}" 
         data-current="3" 

@@ -33,7 +33,9 @@ Page({
   },
   onLoad: function() {
     var that=this;
-    that.getSettingInfo();
+    if (!app.globalData.userinfo.islogin) {
+      that.getSettingInfo();
+    }
     that.getBannerList();
     that.getDzList();
   },
@@ -59,17 +61,13 @@ Page({
                   //此处调用云函数获取相关信息
                   wx.cloud.callFunction({
                     name: 'login',
+                    data:{
+                      logName: app.globalData.userinfo.username,
+                      logDate: util.formatTime(new Date())
+                    },
                     complete: res => {
-                      //调用登录日志
-                      wx.cloud.callFunction({
-                        name: 'addLoginInfo',
-                        data: {
-                          logName: app.globalData.userinfo.username,
-                          logDate: util.formatTime(new Date())
-                        },
-                        complete: res => {
-                        }
-                      })
+                      app.globalData.userinfo.userid=res.result.userid;
+                      app.globalData.userinfo.islogin=true;
                     }
                   })
                 }
@@ -106,17 +104,13 @@ Page({
           //此处调用云函数获取相关信息
           wx.cloud.callFunction({
             name: 'login',
+            data:{
+              logName: app.globalData.userinfo.username,
+              logDate: util.formatTime(new Date())
+            },
             complete: res => {
-              //调用登录日志
-              wx.cloud.callFunction({
-                name: 'addLoginInfo',
-                data: {
-                  logName: app.globalData.userinfo.username,
-                  logDate: util.formatTime(new Date())
-                },
-                complete: res => {
-                }
-              })
+              app.globalData.userinfo.islogin = true;
+              app.globalData.userinfo.userid = res.result.userid;
             }
           })
         }

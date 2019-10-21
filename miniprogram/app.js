@@ -10,7 +10,8 @@ App({
     userinfo:{
       username:'',
       avator:'',
-      openid:''
+      userid:'',
+      islogin:false
     }
   },
   //
