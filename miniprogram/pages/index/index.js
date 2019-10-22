@@ -66,7 +66,7 @@ Page({
                       logDate: util.formatTime(new Date())
                     },
                     complete: res => {
-                      app.globalData.userinfo.userid=res.result.userid;
+                      app.globalData.userinfo.userid=res.result._id;
                       app.globalData.userinfo.islogin=true;
                     }
                   })

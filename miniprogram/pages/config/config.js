@@ -8,14 +8,25 @@ Page({
     tempFilePaths: [],
     storeid: app.globalData.storeid,
     username: '',
+    //文章信息
     title:'',
     subtitle:'',
     date: util.formatTime(new Date()),
     readnum:'',
     content: '',
-    coverimg:''
+    coverimg:'',
+    //商品信息
+    gname:'',
+    gtype: '',
+    gsub: '',
+    gprice: '',
+    ginvnum: '',
+    gservice: '',
+    typeList:[]
   },
   onLoad(){
+    //获取下拉项
+    this.getDropDownList();
     //初始化验证规则
     this.initValidate();
     //获取当前操作人
@@ -23,10 +34,80 @@ Page({
       username: app.globalData.userinfo.username||'admin'
     })
   },
+  getDropDownList(){
+    var that=this;
+    wx.cloud.callFunction({
+      name:'getDropDownListByID',
+      data:{
+        typeid:'001'
+      },
+      success:function(res){
+        that.setData({
+          typeList: res.result.data
+        })
+      }
+    })
+  },
+  //下拉项赋值
+  getvalue(e){
+    this.setData({
+      gtype: e.detail.Dict_Code
+    })
+  },
+  //改变文本值
+  inputeidt(e) {
+    let id = e.currentTarget.dataset.id;
+    var value = e.detail.value;
+    if (id == "1") {
+      this.setData({
+        title: value
+      })
+    }
+    if (id == "2") {
+      this.setData({
+        subtitle: value
+      })
+    }
+    if (id == "4") {
+      this.setData({
+        readnum: value
+      })
+    }
+    if (id == "5") {
+      this.setData({
+        content: value
+      })
+    }
+    if (id == "g_1") {
+      this.setData({
+        gname: value
+      })
+    }
+    if (id == "g_3") {
+      this.setData({
+        gsub: value
+      })
+    }
+    if (id == "g_4") {
+      this.setData({
+        gprice: value
+      })
+    }
+    if (id == "g_5") {
+      this.setData({
+        ginvnum: value
+      })
+    }
+    if (id == "g_6") {
+      this.setData({
+        gservice: value
+      })
+    }
+  },
   /*表单-验证字段*/
   initValidate() {
-    /*(配置规则)*/
-    const rules = {
+    /*(配置规则1)*/
+    const rules1 = {
       title: {
         required: true,
         rangelength: [1, 20]
@@ -47,8 +128,7 @@ Page({
         required: true
       }
     }
-    // 验证字段的提示信息，若不传则调用默认的信息
-    const messages = {
+    const messages1 = {
       title: {
         required: '请输入文章标题',
         rangelength: '标题限制为1~10个字符'
@@ -69,73 +149,68 @@ Page({
         required: '请上传封面'
       }
     };
-
-    // 创建实例对象
-    this.WxValidate = app.WxValidate(rules, messages)
+    this.WxValidate1 = app.WxValidate(rules1, messages1)
+    
+    /*(配置规则2)*/
+    const rules2 = {
+      gname: {
+        required: true,
+        rangelength: [1, 20]
+      },
+      gsub: {
+        required: true,
+        rangelength: [1, 10]
+      },
+      gprice: {
+        required: true,
+        number: true
+      },
+      ginvnum: {
+        required: true,
+        number: true
+      },
+      gservice: {
+        required: true
+      },
+      coverimg: {
+        required: true
+      }
+    }
+    const messages2 = {
+      gname: {
+        required: '请输入商品名称',
+        rangelength: '商品名称限制为1~10个字符'
+      },
+      gsub: {
+        required: '请输入商品简介',
+        rangelength: '商品简介限制为1~10个字符'
+      },
+      gprice: {
+        required: '请输入商品价格',
+        number: '商品价格为数字'
+      },
+      ginvnum: {
+        required: '请输入商品库存数量',
+        number: '商品库存数量为数字'
+      },
+      gservice: {
+        required: '请输入商品名称'
+      },
+      coverimg: {
+        required: '请上传商品图片'
+      }
+    };
+    this.WxValidate2 = app.WxValidate(rules2, messages2)
 
     /*** 也可以自定义验证规则*/
     // this.WxValidate.addMethod('assistance', (value, param) => {
     //   return this.WxValidate.optional(value) || (value.length >= 1 && value.length <= 2)
     // }, '提示语句')
   },
-  submitForm(e) {
-    /*(表单提交校验)*/
-    const params = e.detail.value;
-    if (!this.WxValidate.checkForm(params)) {
-      const error = this.WxValidate.errorList[0]
-      // this.showModal(error);
-      this.showWarnInfo(error)
-      return false
-    }
-    /** 这里添写验证成功以后的逻辑**/
-    this.addArticle();
-  },
-  //验证失败提示信息弹框
-  showModal(error) {
-    wx.showModal({
-      content: error.msg,
-      showCancel: false,
-    })
-  },
-  /*表单验证->(可自定义验证形式)*/
-  showWarnInfo(error) {
-    // 当前page是this对象
-    let page = this;
-    // 延时时间等待
-    let delayTime = 1;
-    // 延时等待毫秒,现设置为1000
-    let delayMillsecond = 2000;
-    // 调用显示警告函数
-    showWran(page, error, delayTime, delayMillsecond);
-  },
-  //改变文本值
-  inputeidt(e){
-    let id = e.currentTarget.dataset.id;
-    var value = e.detail.value;
-    if(id=="1"){
-      this.setData({
-        title: value
-      })
-    }
-    if (id == "2") {
-      this.setData({
-        subtitle: value
-      })
-    }
-    if (id == "4") {
-      this.setData({
-        readnum: value
-      })
-    }
-    if (id == "5") {
-      this.setData({
-        content: value
-      })
-    }
-  },
-  //选择文章缩略图
-  chooseArticleimg() {
+  //选择缩略图
+  chooseimg(e) {
     let that = this;
+    var type = e.currentTarget.dataset.type;
     wx.chooseImage({
       count: 1, // 默认9
       success: res => {
@@ -143,22 +218,22 @@ Page({
         that.setData({
           tempFilePaths: tempFilePaths
         })
-        that.uploadArticleimg();
+        that.uploadimg(type);
       }
     })
   },
   //上传到服务器
-  uploadArticleimg(){
+  uploadimg(type) {
     //上传图片到服务器
     let item = this.data.tempFilePaths[0];
     let filename = item.split('.')[item.split('.').length - 2].slice(0, 5);//随机文件名称
     wx.cloud.uploadFile({
-      cloudPath: 'artile/' + filename,
+      cloudPath: type + '/' + filename,
       filePath: item, // 文件路径
       success: res => {
         //赋值
         this.setData({
-          coverimg:res.fileID
+          coverimg: res.fileID
         })
         wx.showToast({
           title: '上传成功',
@@ -168,6 +243,70 @@ Page({
         console.log(err);
       }
     })
+  },
+  //提交商品信息约束验证
+  submitGoodForm(e){
+    if(this.data.gtype==''){
+      wx.showToast({
+        title: '请选择商品分类',
+      })
+      return;
+    }
+    let params = e.detail.value;
+    if (!this.WxValidate2.checkForm(params)) {
+      let error = this.WxValidate2.errorList[0];
+      this.showWarnInfo(error);
+      return false;
+    }
+    this.addGood();
+  },
+  //新增商品
+  addGood(){
+    wx.hideToast();
+    var postdate = {
+      storeid: this.data.storeid,
+      name: this.data.gname,
+      type: this.data.gtype,
+      sub: this.data.gsub,
+      price: parseInt(this.data.gprice),
+      invnum: parseInt(this.data.ginvnum),
+      ordernum:0,
+      service: this.data.gservice,
+      filepath: this.data.coverimg,
+      createdate: this.data.date
+    };
+    db.collection('good_info').add({
+      data: postdate,
+      success: function (res) {
+        wx.showToast({
+          title: '新增成功',
+        });
+        this.setData({
+          gname: '',
+          gtype: '',
+          gsub: '',
+          gprice: '',
+          ginvnum: '',
+          gservice: '',
+          coverimg:''
+        })
+      },
+      err: function (err) {
+      }
+    })
+  },
+  //提交文章约束验证
+  submitForm(e) {
+    /*(表单提交校验)*/
+    const params = e.detail.value;
+    if (!this.WxValidate1.checkForm(params)) {
+      const error = this.WxValidate1.errorList[0]
+      // this.showModal(error);
+      this.showWarnInfo(error)
+      return false
+    }
+    /** 这里添写验证成功以后的逻辑**/
+    this.addArticle();
   },
   //新增文章
   addArticle(){
@@ -198,7 +337,6 @@ Page({
       err: function (err) {
       }
     })
-
   },
   //上传首页轮播图
   uploadbannerimg() {
@@ -310,6 +448,24 @@ Page({
         //console.log(err);
       }
     })
+  },
+  //验证失败提示信息弹框
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false,
+    })
+  },
+  /*表单验证->(可自定义验证形式)*/
+  showWarnInfo(error) {
+    // 当前page是this对象
+    let page = this;
+    // 延时时间等待
+    let delayTime = 1;
+    // 延时等待毫秒,现设置为1000
+    let delayMillsecond = 2000;
+    // 调用显示警告函数
+    showWran(page, error, delayTime, delayMillsecond);
   }
 })
 

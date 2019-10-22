@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
+    "select":"/components/select/select"
   },
   "navigationBarTitleText": "系统配置"
 }

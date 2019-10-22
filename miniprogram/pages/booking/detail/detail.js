@@ -1,3 +1,6 @@
+const app = getApp();
+const db = wx.cloud.database();
+var util = require('../../../utils/util.js');
 Page({
   data: {
     id:0,
@@ -8,17 +11,11 @@ Page({
     circular: true,
     interval: 2000,
     duration: 500,
-    bannerlist: [
-      'http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACCRu87jBSiwpM_3BzDuBTjoAkBl.jpg',
-      'http://436052.s81i.faiusr.com/2/101/AFEI1M4aEAIYACCTu87jBSjwte1IMO4FOOgCQGU.jpg'
-    ],
-    //
-    Height:""
+    Height:"",
+    goodinfo:{},
+    showinfo:false
   },
   onLoad(option) {
-    this.setData({
-      id: option.id
-    });
     var that = this;
     //  高度自适应
     wx.getSystemInfo({
@@ -30,10 +27,32 @@ Page({
         });
       }
     });
+    //
+    that.setData({
+      id: option.id
+    });
+    that.getGoodInfo(option.id);
   },
-  toOrder(){
+  //获取商品信息
+  getGoodInfo(id){
+    var that=this;
+    wx.cloud.callFunction({
+      name:'getGoodInfo',
+      data:{
+        id:id
+      },
+      success:function(res){
+        that.setData({
+          goodinfo: res.result[0],
+          showinfo:true
+        })
+      }
+    })
+  },
+  //预定页面
+  toOrder(e){
     wx.navigateTo({
-      url: '../toorder/toorder',
+      url: '../toorder/toorder?goodid=' + e.currentTarget.dataset.goodid,
     })
   }
 })

@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/custom/custom",
     "pages/config/config",
+    "pages/custom/custom",
     "pages/custom/cusdetail",
     "pages/order/order",
     "pages/order/orderdetail",
@@ -15,8 +15,8 @@
     "pages/search/search",
     "pages/search/searchresult",
     "pages/booking/index/booking",
-    "pages/booking/detail/detail",
     "pages/booking/toorder/toorder",
+    "pages/booking/detail/detail",
     "pages/booking/complete/complete"
   ],
   "window": {

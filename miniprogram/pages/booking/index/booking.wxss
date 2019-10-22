@@ -69,3 +69,7 @@
   background: #F5B43E;
   border-radius: 20px;
 }
+.loading{
+  width: 100%;
+  padding-top: 20%;
+}

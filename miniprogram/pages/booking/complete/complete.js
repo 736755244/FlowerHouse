@@ -1,23 +1,23 @@
-// pages/booking/complete/complete.js
 Page({
   data: {
-    cur:''
+    orderid:''
   },
-  changebtn(e){
-    this.setData({
-      cur: e.currentTarget.id
+  onLoad(option){
+    var that=this;
+    that.setData({
+      orderid: option.orderid
     })
-    switch (e.currentTarget.id){
-      case 'view':
-        wx.redirectTo({
-          url: './../../order/order?type=0'
-        })
-        break;
-      case 'back':
-        wx.switchTab({
-          url: './../../index/index'
-        })
-        break;
-    }
+  },
+  //查看订单
+  viewOrder(){
+    wx.redirectTo({
+      url: './../../order/order?type=0'
+    })
+  },
+  //返回首页
+  backhome(){
+    wx.switchTab({
+      url: './../../index/index'
+    })
   }
 })

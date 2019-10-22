@@ -20,6 +20,56 @@
   <!-- <block wx:for="{{tempFilePaths}}" wx:key="*this">
     <image src="{{item}}" bindtap="previewImg" data-index="{{index}}"></image>
   </block> -->
+  
+  <view class="b-item mt-20">
+    <form bindsubmit="submitGoodForm">
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>商品名称：</text>
+        <input placeholder="请输入商品名称" name="gname" bindinput="inputeidt" data-id="g_1" value="{{gname}}"></input> 
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>所属分类：</text>
+        <select propArray="{{typeList}}" bind:getvalue='getvalue'></select>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>商品简述：</text>
+        <input placeholder="请输入商品简述" name="gsub" bindinput="inputeidt" data-id="g_3" value="{{gsub}}"></input>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>商品价格：</text>
+        <input placeholder="请输入商品价格" name="gprice" bindinput="inputeidt" data-id="g_4" value="{{gprice}}"></input>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>库存数量：</text>
+        <input placeholder="请输入库存数量" name="ginvnum" bindinput="inputeidt" data-id="g_5" value="{{ginvnum}}"></input>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>商家服务：</text>
+        <textarea maxlength="-1" placeholder="请输入商家服务" name="gservice" bindinput="inputeidt" data-id="g_6" value="{{gservice}}"></textarea>
+      </view>
+      <view class="input_info">
+        <span class="item-must">*</span>
+        <text>商品图片</text>
+        <button bindtap="chooseimg" data-type="goods" class="btnupload">上传</button>
+        <input value="{{coverimg}}" name="coverimg" hidden="hidden"></input>
+        <view class="pre_img" wx:if="{{tempFilePaths.length!=0}}">
+          <text>\n图片预览：\n</text>
+          <block wx:for="{{tempFilePaths}}" wx:key="*this">
+            <image src="{{item}}" bindtap="previewImg" data-index="{{index}}"></image>
+          </block>
+        </view>
+      </view>
+      <view class="input_info">
+        <button formType="submit" class="btnOperator">新增商品</button>
+      </view>
+    </form>
+  </view>
 
   <view class="b-item mt-20">
     <form bindsubmit="submitForm">
@@ -46,7 +96,7 @@
       <view class="input_info">
         <span class="item-must">*</span>
         <text>文章封面</text>
-        <button bindtap="chooseArticleimg" class="btnupload">上传</button>
+        <button bindtap="chooseimg" data-type="artile" class="btnupload">上传</button>
         <input value="{{coverimg}}" name="coverimg" hidden="hidden"></input>
         <view class="pre_img" wx:if="{{tempFilePaths.length!=0}}">
           <text>\n图片预览：\n</text>

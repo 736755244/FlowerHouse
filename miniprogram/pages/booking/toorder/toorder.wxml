@@ -1,3 +1,6 @@
+<view class='wran-tips' style='{{displayWarn}}'>
+  <text>{{warnInfo}}</text>
+</view>
 <view class="bg">
   <view  style="height:{{Height}}px;overflow-y:scroll;">
     <view class="od_header">
@@ -13,29 +16,34 @@
       </view>
     </view>
 
-    <view class="od_content mr-t-10">
-      <span class="item-must">*</span>
-      <text>姓名：\n\n</text>
-      <input placeholder="请输入姓名"></input>
-    </view>
-    <view class="od_content mr-t-1">
-      <span class="item-must">*</span>
-      <text>手机：\n\n</text>
-      <input placeholder="请输入手机号码"></input>
-    </view>
-
-    <view class="od_content mr-t-10">
-      <span class="item-must">*</span>
-      <text>留言：\n\n</text>
-      <textarea placeholder="请输入买家留言"></textarea>
-    </view>
+    <form >
+     <view class="od_content mr-t-10">
+        <span class="item-must">*</span>
+        <text>姓名：\n\n</text>
+        <input placeholder="请输入姓名" 
+        bindinput="inputedit" name="username" value="{{username}}" data-id="0"></input>
+      </view>
+      <view class="od_content mr-t-1">
+        <span class="item-must">*</span>
+        <text>手机：\n\n</text>
+        <input placeholder="请输入手机号码" 
+        bindinput="inputedit" name="phone" value="{{phone}}" data-id="1"></input>
+      </view>
+      <view class="od_content mr-t-10">
+        <!-- <span class="item-must">*</span> -->
+        <text>留言：\n\n</text>
+        <textarea placeholder="请输入买家留言" 
+        bindinput="inputedit" name="remark" value="{{remark}}" data-id="2"></textarea>
+      </view>
+    </form>
   </view>
 
   <view>
     <div class="service-footer">
       <div class="service-detail-nav">
-        <span class="nav-booking-item" bindtap="confirmOrder">提交订单</span>
+        <span class="nav-booking-item" bindtap="getPageInfo">提交订单</span>
       </div>
     </div>
   </view>
+
 </view>

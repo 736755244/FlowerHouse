@@ -1,46 +1,35 @@
 <view >
     <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-        <view 
-        class="tab-item {{currentTab==0?'active':''}}"  
-        data-current="0" 
-        bindtap="swichNav">全部</view>
-        <view 
-        class="tab-item {{currentTab==1?'active':''}}" 
-        data-current="1" 
-        bindtap="swichNav">混合鲜花</view>
-        <view 
-        class="tab-item {{currentTab==2?'active':''}}" 
-        data-current="2" 
-        bindtap="swichNav">单品简花</view>
-        <view 
-        class="tab-item {{currentTab==3?'active':''}}" 
-        data-current="3" 
-        bindtap="swichNav">简约混合</view>
-        <view 
-        class="tab-item {{currentTab==4?'active':''}}" 
-        data-current="4" 
-        bindtap="swichNav">其他</view>
+        <block wx:for="{{navBar}}" wx:key="*this">
+           <view 
+            class="tab-item {{currentTab==index?'active':''}}"  
+            data-current="{{index}}" data-typeid="{{item.Dict_Code}}"
+            bindtap="swichNav">{{item.Type_Name}}</view>
+        </block>
     </scroll-view>
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
      style="height:{{winHeight}}rpx">
-        <swiper-item wx:for="{{[0,1,2,3,4]}}">
-            <scroll-view scroll-y="true" class="scoll-h" >
-                <block wx:for="{{TypeList}}" wx:key="*this">
-                   <view class="card_con">
-                      <image src="{{item.img}}"></image>
-                      <div class="main_t"><text>{{item.type}}\n</text></div>
-                      <div class="sub_t"><text>{{item.spec}}</text></div>
-                      <div class="f_info">
-                        <div class="sub_info">
-                          <text>¥{{item.price}}</text>
-                          <text>已预约：{{item.order_num}}</text>
-                          <text>剩余：{{item.order_res}}</text>
-                        </div>
-                        <button bindtap="navato" id="{{index}}">立即预约</button>
+        <swiper-item wx:for="{{navBar}}">
+          <scroll-view scroll-y="true" class="scoll-h" wx:if="{{showList}}">
+              <block wx:for="{{goodslist}}" wx:key="*this">
+                  <view class="card_con">
+                    <image src="{{item.filepath}}"></image>
+                    <div class="main_t"><text>{{item.typename}}\n</text></div>
+                    <div class="sub_t"><text>{{item.sub}}</text></div>
+                    <div class="f_info">
+                      <div class="sub_info">
+                        <text>¥{{item.price}}</text>
+                        <text>已预约：{{item.ordernum}}</text>
+                        <text>剩余：{{item.invnum}}</text>
                       </div>
-                   </view>
-                </block>
-            </scroll-view>
+                      <button bindtap="navato" id="{{item._id}}">立即预约</button>
+                    </div>
+                  </view>
+              </block>
+          </scroll-view>
+          <view wx:if="{{!showList}}" class="loading">
+            <image src="../../../images/icon/timg.gif"></image>
+          </view>
         </swiper-item>
     </swiper>
 </view>

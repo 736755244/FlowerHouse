@@ -83,3 +83,18 @@
   text-align: center;
   cursor: pointer;
 }
+
+/* 错误提示 */
+.wran-tips {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  padding: 2%;
+  width: 100%;
+  background-color: #f00;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}

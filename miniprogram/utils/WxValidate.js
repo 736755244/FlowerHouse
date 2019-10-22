@@ -309,10 +309,8 @@ class WxValidate {
      * @param {Object} data 需要验证的数据对象
      */
     checkParam(param, rules, data) {
-
         // 缓存数据对象
         this.data = data
-
         // 缓存字段对应的值
         const value = data[param] !== null && data[param] !== undefined ? data[param] : ''
 
@@ -330,7 +328,6 @@ class WxValidate {
 
                 // 调用验证方法
                 const result = this.methods[method](value, rule.parameters)
-
                 // 若result返回值为dependency-mismatch，则说明该字段的值为空或非必填字段
                 if (result === 'dependency-mismatch') {
                     continue

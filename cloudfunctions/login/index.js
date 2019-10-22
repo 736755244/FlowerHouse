@@ -11,7 +11,6 @@ exports.main = (event, context) => {
     open_id: openid
   }).get().then(res=>{
     if(res.data.length>0){//已存在该用户
-    console.log(res);
       var user_id = res.data[0]._id;
       return db.collection('zm_log')
         .add({
