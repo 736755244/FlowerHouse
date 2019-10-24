@@ -89,6 +89,12 @@ Page({
   },
   //确认订单
   confirmOrder(){
+    if (!app.globalData.userinfo.userid){
+      wx.showToast({
+        title: '未获取到用户信息，请退出重试',
+      })
+      return;
+    }
     var postdata={
       userid: app.globalData.userinfo.userid,
       storeid: app.globalData.storeid,

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/user/user",
     "pages/config/config",
     "pages/custom/custom",
     "pages/custom/cusdetail",
@@ -8,7 +9,6 @@
     "pages/order/orderdetail",
     "pages/card/cardlist",
     "pages/card/card",
-    "pages/user/user",
     "pages/robot/robot",
     "pages/news/news",
     "pages/news/newsdetail",

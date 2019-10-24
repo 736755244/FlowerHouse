@@ -1,22 +1,42 @@
 const app = getApp();
+const db=wx.cloud.database();
+var util = require('../../utils/util.js');
+
 Page({
   data: {
-    //用户信息（头像、名称等）
+    iconpath: app.globalData.iconpath,
     avator: '',
     username: '',
-    //other
     showmore:false,
-    count1:0,
-    count2:2,
-    count3:3,
-    count4:4
+    showloading:true,
+    orderlist:[]
   },
   onLoad(){
-    this.setData({
-      avator: app.globalData.userinfo.avator,
-      username: app.globalData.userinfo.username
+    var that=this;
+    that.setData({
+      avator: wx.getStorageSync('avator'),//app.globalData.userinfo.avator,
+      username: wx.getStorageSync('username')//app.globalData.userinfo.username
+    })
+    that.getlist();
+  },
+  //
+  getlist(){
+    var that = this;
+    console.log(wx.getStorageSync('userid'));
+    wx.cloud.callFunction({
+      name:'getOrderSumInfo',
+      data:{
+        userid:wx.getStorageSync('userid')//app.globalData.userinfo.userid
+      },
+      complete:function(res){
+        that.setData({
+          orderlist: res.result,
+          showloading:false
+        })
+      }
     })
   },
+
   showOrder(e){
     wx.navigateTo({
       url: '../order/order?type=' + e.currentTarget.id,

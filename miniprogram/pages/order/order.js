@@ -1,67 +1,19 @@
+const app = getApp();
+const db = wx.cloud.database();
+var util = require('../../utils/util.js');
+
 Page({
   data: {
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
     newlist:[],
-    isEmpty:false,
-    orderList:[
-      {
-        id:20191024,
-        status:2,
-        stastusname: '进行中',
-        title:'小程序服务',
-        subtitle:'专业提供小程序服务、设计服务',
-        price:'100.00',
-        oldprice:'255.00',
-        img:'../../images/icon/default.png'
-      },
-      {
-        id: 20191011,
-        status: 3,
-        stastusname:'已完成',
-        title: '小程序服务',
-        subtitle: '专业提供小程序服务、设计服务',
-        price: '60.50',
-        oldprice: '445.00',
-        img: '../../images/icon/default.png'
-      },
-      {
-        id: 20190833,
-        status: 4,
-        stastusname: '已取消',
-        title: '小程序服务',
-        subtitle: '专业提供小程序服务、设计服务',
-        price: '23.50',
-        oldprice: '45.00',
-        img: '../../images/icon/default.png'
-      },
-      {
-        id: 20190711,
-        status: -1,
-        stastusname: '待支付',
-        title: '小程序服务',
-        subtitle: '专业提供小程序服务、设计服务',
-        price: '600.50',
-        oldprice: '4458.00',
-        img: '../../images/icon/default.png'
-      },
-      {
-        id: 20190718,
-        status: 5,
-        stastusname: '退款中',
-        title: '小程序服务',
-        subtitle: '专业提供小程序服务、设计服务',
-        price: '600.50',
-        oldprice: '4458.00',
-        img: '../../images/icon/default.png'
-      },
-    ]
+    isEmpty:false
   },
   onLoad(options) {
     var that = this;
     //初始化判断展示那个模块
-    this.changelist(options.type);
+    this.getlist(options.type);
     //高度自适应
     wx.getSystemInfo({
       success: function (res) {
@@ -76,26 +28,24 @@ Page({
     });
   },
   //分发不同list
-  changelist(id){
+  getlist(id){
     var that=this;
     that.data.newlist = [];
-    var list = [],isemp=false;
-    if (id != 0) {
-      for (var index in that.data.orderList) {
-        var item = that.data.orderList[index];
-        if (item.status == id) {
-          list.push(item);
-        }
+    wx.cloud.callFunction({
+      name:'getOrderList',
+      data:{
+        pcode:'zm002001',//id,
+        userid: wx.getStorageSync('userid')//app.globalData.userinfo.userid
       }
-    } else {
-      list = that.data.orderList;
-    }
-    isemp=list.length==0?true:false;
-    that.setData({
-      newlist: list,
-      currentTab: id,
-      isEmpty: isemp
+    }).then(res=>{
+      that.setData({
+        newlist: Object.prototype.toString.call(res.result[0]) == "[object Array]" ? res.result[0] : res.result,
+        currentTab: id,
+        isEmpty: res.result.length==0?true:false
+      })
     })
+  
+  
   },
   //点击按钮操作，应传入订单号-按钮类型=》匹配付款、取消等操作，查询订单内容
   btnOption(e){

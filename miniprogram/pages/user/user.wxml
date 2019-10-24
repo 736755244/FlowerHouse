@@ -1,4 +1,4 @@
-<view style="background:#eee;">
+<view style="background:#eee;" wx:if="{{!showloading}}">
   <view>
     <view class="user-header">
       <view class="header_img">
@@ -8,32 +8,22 @@
     </view>
 
    <view class="user_content">
-     <view class="order_info">
+      <view class="order_info">
         <div class="all_order" bindtap="showOrder" id="0">
           <text>所有订单</text>
           <image src="../../images/pictrues/right.png"></image>
         </div>
         <div class="all_type">
-          <div bindtap="showOrder" id="1">
-            <image src="../../images/icon/pay.png"></image>
-            <text>\n 待支付</text>
-            <span wx:if="{{count1!=0}}">{{count1}}</span>
+          <block wx:for="{{orderlist}}" wx:key="*this">
+          <div bindtap="showOrder" id="{{item.Dict_Code}}">
+            <image wx:if="{{item.Dict_Code=='zm002001'}}" src="{{iconpath}}pay.png"></image>
+            <image wx:if="{{item.Dict_Code=='zm002002'}}" src="{{iconpath}}paying.png"></image>
+            <image wx:if="{{item.Dict_Code=='zm002003'}}" src="{{iconpath}}over.png"></image>
+            <image wx:if="{{item.Dict_Code=='zm002004'}}" src="{{iconpath}}cancel.png"></image>
+            <text>\n {{item.Type_Name}}</text>
+            <span wx:if="{{item.count!=0}}">{{item.count}}</span>
           </div>
-           <div bindtap="showOrder" id="2">
-            <image src="../../images/icon/paying.png"></image>
-            <text>\n 进行中</text>
-            <span wx:if="{{count2!=0}}">{{count2}}</span>
-          </div>
-           <div bindtap="showOrder" id="3">
-            <image src="../../images/icon/over.png"></image>
-            <text>\n 已完成</text>
-           <span wx:if="{{count1!=3}}">{{count3}}</span>
-          </div>
-           <div bindtap="showOrder" id="4">
-            <image src="../../images/icon/cancel.png"></image>
-            <text>\n 已取消</text>
-           <span wx:if="{{count4!=0}}">{{count4}}</span>
-          </div>
+          </block>
         </div>
       </view>
       <view class="mes_info">
@@ -82,7 +72,6 @@
           </view>
         </view>
       </view>
-
       <view class="my_info">
         <view class="my_item">
           <image src="../../images/icon/map1.png"></image>
@@ -103,4 +92,7 @@
       </view>
     </view>
   </view> 
+</view>
+<view class="loading" wx:if="{{showloading}}">
+  <image src="../../images/icon/timg.gif"></image>
 </view>

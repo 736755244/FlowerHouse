@@ -72,4 +72,5 @@
 .loading{
   width: 100%;
   padding-top: 20%;
+  text-align: center;
 }

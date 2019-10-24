@@ -1,23 +1,23 @@
 <view >
     <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
         <view 
-        class="tab-item {{currentTab==0?'active':''}}"  
+        class="tab-item {{currentTab=='zm002001'?'active':''}}"  
         data-current="0" 
         bindtap="swichNav">全部</view>
         <view 
-        class="tab-item {{currentTab==1?'active':''}}" 
+        class="tab-item {{currentTab=='zm002002'?'active':''}}" 
         data-current="1" 
         bindtap="swichNav">待支付</view>
         <view 
-        class="tab-item {{currentTab==2?'active':''}}" 
+        class="tab-item {{currentTab=='zm002003'?'active':''}}" 
         data-current="2" 
         bindtap="swichNav">已支付</view>
         <view 
-        class="tab-item {{currentTab==3?'active':''}}" 
+        class="tab-item {{currentTab=='zm002004'?'active':''}}" 
         data-current="3" 
         bindtap="swichNav">已完成</view>
         <view 
-        class="tab-item {{currentTab==4?'active':''}}" 
+        class="tab-item {{currentTab=='zm002004'?'active':''}}" 
         data-current="4" 
         bindtap="swichNav">已取消</view>
     </scroll-view>
@@ -34,29 +34,29 @@
                 <view class="order-item-wrap"
                     bindtap="btnOption"
                     data-btntype="cancel"
-                    data-orderid="{{item.id}}"
+                    data-orderid="{{item._id}}"
                     >
                   <view class="order-item-header">
-                    <span>订单号：{{item.id}}</span>
-                    <span class="order-status">{{item.stastusname}}</span>
+                    <span>订单号：{{item._id}}</span>
+                    <span class="order-status">{{item.status}}</span>
                   </view>
                   <view class="order-item-content">
                     <div class="order-img-wrap">
-                      <image src="{{item.img}}"></image>
+                      <image src="{{item.goodinfo.filepath}}"></image>
                     </div>
                     <div class="order-info-wrap">
-                      <div class="order-name ellipsis">{{item.title}}</div>
-                      <div class="order-abstract ellipsis">{{item.subtitle}}</div>
+                      <div class="order-name ellipsis">{{item.goodinfo.name}}</div>
+                      <div class="order-abstract ellipsis">{{item.goodinfo.sub}}</div>
                       <div class="order-price-wrap">
-                        <span class="selling-price">{{item.price}}</span>
-                        <span class="original-price">{{item.oldprice}}</span>
+                        <span class="selling-price">{{item.goodinfo.price}}</span>
+                        <!-- <span class="original-price">{{item.oldprice}}</span> -->
                       </div>
                     </div>
                   </view>
-                  <view class="order-item-footer" wx:if="{{item.status==2}}">
+                  <view class="order-item-footer" wx:if="{{item.status=='zm003003'}}">
                     <button class="order-btn cancel-btn">取消预约</button>
                   </view>
-                  <view class="order-item-footer" wx:if="{{item.status==1}}">
+                  <view class="order-item-footer" wx:if="{{item.status=='zm003001'}}">
                     <button class="order-btn complete-btn">去支付</button>
                     <button class="order-btn cancel-btn">取消预约</button>
                   </view>
@@ -74,19 +74,19 @@
                     data-orderid="{{item.id}}"
                     >
                   <view class="order-item-header">
-                    <span>订单号：{{item.id}}</span>
+                    <span>订单号：{{item._id}}</span>
                     <span class="order-status">{{item.stastusname}}</span>
                   </view>
                   <view class="order-item-content">
                     <div class="order-img-wrap">
-                      <image src="{{item.img}}"></image>
+                      <image src="{{item.goodinfo.filepath}}"></image>
                     </div>
                     <div class="order-info-wrap">
-                      <div class="order-name ellipsis">{{item.title}}</div>
-                      <div class="order-abstract ellipsis">{{item.subtitle}}</div>
+                      <div class="order-name ellipsis">{{item.goodinfo.name}}</div>
+                      <div class="order-abstract ellipsis">{{item.goodinfo.sub}}</div>
                       <div class="order-price-wrap">
-                        <span class="selling-price">{{item.price}}</span>
-                        <span class="original-price">{{item.oldprice}}</span>
+                        <span class="selling-price">{{item.goodinfo.price}}</span>
+                        <!-- <span class="original-price">{{item.oldprice}}</span> -->
                       </div>
                     </div>
                   </view>

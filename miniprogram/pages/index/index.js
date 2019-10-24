@@ -50,6 +50,8 @@ Page({
             success: function (res) {
               app.globalData.userinfo.username = res.userInfo.nickName;
               app.globalData.userinfo.avator = res.userInfo.avatarUrl;
+              wx.setStorageSync('username', res.userInfo.nickName);
+              wx.setStorageSync('avator', res.userInfo.avatarUrl);
               that.setData({
                 isHide: false
               });
@@ -66,7 +68,9 @@ Page({
                       logDate: util.formatTime(new Date())
                     },
                     complete: res => {
-                      app.globalData.userinfo.userid=res.result._id;
+                      console.log(res);
+                      app.globalData.userinfo.userid = res.result[0];
+                      wx.setStorageSync('userid', res.result[0]);
                       app.globalData.userinfo.islogin=true;
                     }
                   })
@@ -92,6 +96,8 @@ Page({
       var that = this;
       app.globalData.userinfo.username = e.detail.userInfo.nickName;
       app.globalData.userinfo.avator = e.detail.userInfo.avatarUrl;
+      wx.setStorageSync('username', e.detail.userInfo.nickName);
+      wx.setStorageSync('avator', e.detail.userInfo.avatarUrl);
       //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
       that.setData({
         isHide: false
@@ -109,8 +115,10 @@ Page({
               logDate: util.formatTime(new Date())
             },
             complete: res => {
+              console.log(res);
               app.globalData.userinfo.islogin = true;
-              app.globalData.userinfo.userid = res.result.userid;
+              app.globalData.userinfo.userid = res.result[0];
+              wx.setStorageSync('userid', res.result[0]);
             }
           })
         }

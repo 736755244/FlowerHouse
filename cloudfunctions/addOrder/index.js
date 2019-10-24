@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
       remark:event.remark,
       goodid:event.goodid,
       ordernum:event.ordernum,
-      status:'zm002001',
+      status:'zm003001',
       orderdate: event.orderdate
     }
   }).then(res=>{
