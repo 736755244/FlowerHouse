@@ -11,13 +11,16 @@ Page({
     showloading:true,
     orderlist:[]
   },
+  onShow(){//切换tab时，实时刷新数据
+    var that=this;
+    that.getlist();
+  },
   onLoad(){
     var that=this;
     that.setData({
       avator: wx.getStorageSync('avator'),//app.globalData.userinfo.avator,
       username: wx.getStorageSync('username')//app.globalData.userinfo.username
     })
-    that.getlist();
   },
   //
   getlist(){

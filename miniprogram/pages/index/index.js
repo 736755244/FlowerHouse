@@ -31,11 +31,17 @@ Page({
     //店长list
     dzlist:[]
   },
-  onLoad: function() {
-    var that=this;
+  onShow(){
+    var that = this;
     if (!app.globalData.userinfo.islogin) {
       that.getSettingInfo();
     }
+  },
+  onLoad: function() {
+    var that=this;
+    // if (!app.globalData.userinfo.islogin) {
+    //   that.getSettingInfo();
+    // }
     that.getBannerList();
     that.getDzList();
   },
@@ -68,7 +74,7 @@ Page({
                       logDate: util.formatTime(new Date())
                     },
                     complete: res => {
-                      console.log(res);
+                      //console.log(res);
                       app.globalData.userinfo.userid = res.result[0];
                       wx.setStorageSync('userid', res.result[0]);
                       app.globalData.userinfo.islogin=true;
@@ -115,7 +121,7 @@ Page({
               logDate: util.formatTime(new Date())
             },
             complete: res => {
-              console.log(res);
+              // console.log(res);
               app.globalData.userinfo.islogin = true;
               app.globalData.userinfo.userid = res.result[0];
               wx.setStorageSync('userid', res.result[0]);
