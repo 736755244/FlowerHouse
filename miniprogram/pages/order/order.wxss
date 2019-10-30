@@ -18,6 +18,7 @@ div{
   margin:0 10px;
   padding: 0 10px;
   display: inline-block;
+  z-index: 99;
 }
 .tab-item.active{
   color: #F5B43E;
@@ -118,8 +119,6 @@ div{
   border-color: #F5B43E;
   color: #F5B43E;
 }
-
-
 .no_order{
   margin-top: 105rpx;
   padding-top: 30px;
@@ -132,6 +131,3 @@ div{
   width: 100px;
   height: 100px;
 }
-
-
-

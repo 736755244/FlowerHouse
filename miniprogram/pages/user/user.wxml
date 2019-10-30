@@ -93,6 +93,7 @@
     </view>
   </view> 
 </view>
-<view class="loading" wx:if="{{showloading}}">
+
+<view wx:if="{{showloading}}" class="loading">
   <image src="../../images/icon/timg.gif"></image>
 </view>

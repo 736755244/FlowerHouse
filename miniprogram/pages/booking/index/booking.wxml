@@ -27,7 +27,7 @@
                   </view>
               </block>
           </scroll-view>
-          <view wx:if="{{!showList}}" class="loading">
+          <view wx:if="{{!showList}}">
             <image src="../../../images/icon/timg.gif"></image>
           </view>
         </swiper-item>

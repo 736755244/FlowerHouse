@@ -25,7 +25,6 @@ Page({
   //
   getlist(){
     var that = this;
-    console.log(wx.getStorageSync('userid'));
     wx.cloud.callFunction({
       name:'getOrderSumInfo',
       data:{

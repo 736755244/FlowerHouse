@@ -1,5 +1,6 @@
 {
   "component": true,
-  "usingComponents": {},
+  "usingComponents": {
+  },
   "navigationBarTitleText": "预约鲜花"
 }

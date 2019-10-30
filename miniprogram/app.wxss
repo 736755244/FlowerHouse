@@ -6,3 +6,9 @@
   align-items: center;
   box-sizing: border-box;
 } 
+
+.loading{
+  width: 100%;
+  padding-top: 20%;
+  text-align: center;
+}

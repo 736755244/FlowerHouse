@@ -5,15 +5,22 @@ var util = require('../../utils/util.js');
 Page({
   data: {
     winHeight: "",//窗口高度
-    currentTab: 0, //预设当前项的值
+    currentTab: 0, //选项卡
     scrollLeft: 0, //tab标题的滚动条位置
-    newlist:[],
-    isEmpty:false
+    newlist:[],//列表数据
+    isEmpty:false,//是否为空
+    showList:false,//是否展示列表
+    curType:""//当前订单类型
   },
   onLoad(options) {
     var that = this;
-    //初始化判断展示那个模块
-    this.getlist(options.type);
+    that.setData({
+      curType: options.type
+    })
+    //将传入的code转为下标0-4
+    that.codeToNum(options.type);
+    //查询数据
+    that.getlist(options.type);
     //高度自适应
     wx.getSystemInfo({
       success: function (res) {
@@ -29,47 +36,91 @@ Page({
   },
   //分发不同list
   getlist(id){
+    var idlist = [];
+    switch(id){
+      case 'zm002001':
+        idlist=['zm003001'];
+        break;
+      case 'zm002002':
+        idlist = ['zm003002', 'zm003003'];
+        break;
+      case 'zm002003':
+        idlist = ['zm003004'];
+        break;
+      case 'zm002004':
+        idlist = ['zm003005'];
+        break;
+      case 'all':
+      default:
+        idlist = ['zm003001', 'zm003002', 'zm003003', 'zm003004', 'zm003005'];
+        break;
+    }
     var that=this;
     that.data.newlist = [];
     wx.cloud.callFunction({
       name:'getOrderList',
       data:{
-        pcode:'zm002001',//id,
-        userid: wx.getStorageSync('userid')//app.globalData.userinfo.userid
+        typeid: idlist,
+        userid: wx.getStorageSync('userid')
       }
     }).then(res=>{
       that.setData({
-        newlist: Object.prototype.toString.call(res.result[0]) == "[object Array]" ? res.result[0] : res.result,
-        currentTab: id,
-        isEmpty: res.result.length==0?true:false
+        newlist: res.result,
+        // currentTab: id,
+        isEmpty: res.result.length==0?true:false,
+        showList:true
       })
     })
-  
-  
   },
-  //点击按钮操作，应传入订单号-按钮类型=》匹配付款、取消等操作，查询订单内容
-  btnOption(e){
-    var btntype = e.target.dataset.btntype;
-    var orderid = e.target.dataset.orderid;
+  //订单详情
+  toOrderDetail(e){
+    var orderid = e.currentTarget.dataset.orderid;
     wx.navigateTo({
       url: '../order/orderdetail?oid=' + orderid
     })
   },
+  //按钮统一操作
+  cmdOption(e){
+    var that=this;
+    var btntype = e.currentTarget.dataset.btntype;
+    var orderinfo = e.currentTarget.dataset.item;
+    wx.cloud.callFunction({
+      name: 'changeOrderstatus',
+      data: {
+        type: btntype,
+        orderid: orderinfo._id,
+        goodid: orderinfo.goodid
+      }
+    }).then(res => {
+      that.getlist(that.data.curType);
+      wx.showToast({
+        title: btntype+" "+res.result[0].message
+      })
+    })
+   
+  },
   // 滚动切换标签样式
   switchTab: function (e) {
     this.setData({
-      currentTab: e.detail.current
+      currentTab: e.detail.current,
+      showList:false
     });
-    this.checkCor();
+    this.checkCor();//检查选项卡滚动位置
+    this.numToCode(e.detail.current);//设置当前订单类型
+    this.getlist(this.data.curType);//查询订单
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
-    if (this.data.currentTaB == cur) { 
+    var type = e.target.dataset.type;
+    if (this.data.currentTab == cur) { 
       return false; 
     }else {
-      //切换list的同时，切换list
-      this.changelist(cur);
+      this.setData({
+        currentTab: cur,
+        showList:false
+      })
+      this.getlist(type);
     }
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
@@ -83,6 +134,56 @@ Page({
         scrollLeft: 0
       })
     }
+  },
+  //匹配index与code的关系
+  numToCode(num){
+    var that=this;
+    let code="";
+    switch (num){
+      case 1:
+        code = "zm002001"
+        break;
+      case 2:
+        code = "zm002002"
+        break;
+      case 3:
+        code = "zm002003"
+        break;
+      case 4:
+        code = "zm002004"
+        break;
+      case 0:
+      default:
+        code = "all"
+        break;
+    }
+    that.setData({
+      curType:code
+    })
+  },
+  codeToNum(code){
+    var that = this;
+    var num = 0;
+    switch (code) {
+      case "zm002001":
+        num = 1;
+        break;
+      case "zm002002":
+        num = 2;
+        break;
+      case "zm002003":
+        num = 3;
+        break;
+      case "zm002004":
+        num = 4;
+        break;
+      default:
+        num = 0;
+        break;
+    }
+    that.setData({
+      currentTab: num
+    })
   }
   
 })

@@ -1,5 +1,6 @@
 {
   "component": true,
-  "usingComponents": {},
+  "usingComponents": {
+  },
   "navigationBarTitleText": "我的订单"
 }
