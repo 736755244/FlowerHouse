@@ -92,9 +92,10 @@ Page({
         goodid: orderinfo.goodid
       }
     }).then(res => {
+      console.log(that.data.curType);
       that.getlist(that.data.curType);
       wx.showToast({
-        title: btntype+" "+res.result[0].message
+        title: res.result[0].message
       })
     })
    
@@ -118,6 +119,7 @@ Page({
     }else {
       this.setData({
         currentTab: cur,
+        curType: type,
         showList:false
       })
       this.getlist(type);

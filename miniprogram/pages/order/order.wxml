@@ -48,6 +48,8 @@
                     </div>
                   </view>
                   <view class="order-item-footer" wx:if="{{item.status=='zm003003'}}">
+                    <button class="order-btn confirm-btn"
+                    bindtap="cmdOption" data-btnType="confirm" data-item="{{item}}">确认取货</button>
                     <button class="order-btn cancel-btn"
                     bindtap="cmdOption" data-btnType="cancel" data-item="{{item}}">取消预约</button>
                   </view>
@@ -89,6 +91,8 @@
                     </div>
                   </view>
                   <view class="order-item-footer" wx:if="{{item.status=='zm003003'}}">
+                    <button class="order-btn confirm-btn"
+                    bindtap="cmdOption" data-btnType="confirm" data-item="{{item}}">确认取货</button>
                     <button class="order-btn cancel-btn"
                     bindtap="cmdOption" data-btnType="cancel" data-item="{{item}}">取消预约</button>
                   </view>
@@ -130,6 +134,8 @@
                     </div>
                   </view>
                   <view class="order-item-footer" wx:if="{{item.status=='zm003003'}}">
+                    <button class="order-btn confirm-btn"
+                    bindtap="cmdOption" data-btnType="confirm" data-item="{{item}}">确认取货</button>
                     <button class="order-btn cancel-btn"
                     bindtap="cmdOption" data-btnType="cancel" data-item="{{item}}">取消预约</button>
                   </view>
@@ -171,6 +177,8 @@
                     </div>
                   </view>
                   <view class="order-item-footer" wx:if="{{item.status=='zm003003'}}">
+                    <button class="order-btn confirm-btn"
+                    bindtap="cmdOption" data-btnType="confirm" data-item="{{item}}">确认取货</button>
                     <button class="order-btn cancel-btn"
                     bindtap="cmdOption" data-btnType="cancel" data-item="{{item}}">取消预约</button>
                   </view>
@@ -212,6 +220,8 @@
                     </div>
                   </view>
                  <view class="order-item-footer" wx:if="{{item.status=='zm003003'}}">
+                    <button class="order-btn confirm-btn"
+                    bindtap="cmdOption" data-btnType="confirm" data-item="{{item}}">确认取货</button>
                     <button class="order-btn cancel-btn"
                     bindtap="cmdOption" data-btnType="cancel" data-item="{{item}}">取消预约</button>
                   </view>

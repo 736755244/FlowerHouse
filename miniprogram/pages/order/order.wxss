@@ -119,6 +119,11 @@ div{
   border-color: #F5B43E;
   color: #F5B43E;
 }
+.order-content .confirm-btn {
+  margin-left: 8px;
+  border-color: #F5B43E;
+  color: #F5B43E;
+}
 .no_order{
   margin-top: 105rpx;
   padding-top: 30px;

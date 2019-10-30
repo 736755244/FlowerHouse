@@ -19,6 +19,11 @@
 </view>
  
 <view class="container" wx:else>
+  <addReduce 
+  bind:addNum="addNum" 
+  bind:redNum="redNum"
+  maxNum="{{maxnum}}"
+  minNUm="{{minnum}}"></addReduce>
   <!-- 固定按钮 -->
   <view>
     <div class="arrowWidget collectArrow {{domshow?'bottom':'top'}}" bindtap="showmenu">

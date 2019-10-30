@@ -10,13 +10,18 @@ Page({
     username:'',
     phone:'',
     remark:'',
-    goodid:''
+    goodid:'',
+    num:1,
+    minNum:0,
+    maxNum:0
   },
   onLoad(option){
     var that = this;
     that.setData({
       goodid: option.goodid
     });
+    //获取商品信息
+    that.getGoodInfo(option.goodid);
     //高度自适用
     wx.getSystemInfo({
       success: function (res) {
@@ -29,6 +34,19 @@ Page({
     }); 
     //初始化验证规则
     this.initValidate();
+  },
+  //
+  getGoodInfo(id){
+    wx.cloud.callFunction({
+      name:'getGoodInfo',
+      data:{
+        id:id
+      }
+    }).then(res=>{
+      this.setData({
+        maxNum:res.result[0].invnum
+      })
+    })
   },
   /*表单-验证字段*/
   initValidate() {
@@ -44,6 +62,10 @@ Page({
       remark: {
         required: false
       },
+      num:{
+        required:true,
+        range:[this.data.minNum,this.data.maxNum]
+      }
     }
     const messages = {
       username: {
@@ -55,6 +77,9 @@ Page({
       remark: {
         required: '请填写留言'
       },
+      num:{
+        required: '请选择购买数量'
+      }
     };
     this.WxValidate = app.WxValidate(rules, messages)
   },
@@ -102,7 +127,7 @@ Page({
       phone: this.data.phone,
       remark: this.data.remark,
       goodid: this.data.goodid,
-      ordernum: 1,
+      ordernum: this.data.num,
       orderdate: util.formatTime(new Date())
     }
     wx.cloud.callFunction({
@@ -129,6 +154,18 @@ Page({
     let delayMillsecond = 2000;
     // 调用显示警告函数
     showWran(page, error, delayTime, delayMillsecond);
+  },
+  addNum(e){
+    let num=e.detail;
+    this.setData({
+      num: num
+    })
+  },
+  reduceNum(e){
+    let num = e.detail;
+    this.setData({
+      num: num
+    })
   }
 })
 //定义错误提示的相关信息

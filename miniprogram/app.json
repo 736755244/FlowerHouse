@@ -15,8 +15,8 @@
     "pages/search/search",
     "pages/search/searchresult",
     "pages/booking/index/booking",
-    "pages/booking/toorder/toorder",
     "pages/booking/detail/detail",
+    "pages/booking/toorder/toorder",
     "pages/booking/complete/complete"
   ],
   "window": {

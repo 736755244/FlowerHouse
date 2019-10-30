@@ -17,7 +17,14 @@
     </view>
 
     <form >
-     <view class="od_content mr-t-10">
+      <view class="od_content mr-t-10">
+        <span class="item-must">*</span>
+        <text>选择购买数量：</text>
+        <minMax
+        num="{{num}}" maxNum="{{maxNum}}" minNum="{{minNum}}"
+        bind:addNum="addNum" bind:reduceNum="reduceNum"></minMax>
+      </view>
+      <view class="od_content mr-t-10">
         <span class="item-must">*</span>
         <text>姓名：\n\n</text>
         <input placeholder="请输入姓名" 

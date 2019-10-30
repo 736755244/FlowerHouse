@@ -1,0 +1,9 @@
+<!-- 主容器 -->  
+<view class="stepper">  
+    <!-- 减号 -->  
+    <span class="{{minStatus}}" bindtap="Minus">-</span>  
+    <!-- 数值 -->  
+    <input type="number" bindchange="handleManual" value="{{curNum}}" />  
+    <!-- 加号 -->  
+    <span class="{{maxStatus}}" bindtap="Plus">+</span>  
+</view>  

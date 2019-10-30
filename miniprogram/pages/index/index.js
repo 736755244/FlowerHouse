@@ -29,7 +29,7 @@ Page({
     //默认  
     current: 0,
     //店长list
-    dzlist:[]
+    dzlist:[],
   },
   onShow(){
     var that = this;
@@ -231,5 +231,5 @@ Page({
     wx.navigateTo({
       url: '../config/config',
     })
-  }
+  },
 })
