@@ -12,7 +12,7 @@ Page({
     remark:'',
     goodid:'',
     num:1,
-    minNum:0,
+    minNum:1,
     maxNum:0
   },
   onLoad(option){
@@ -63,8 +63,7 @@ Page({
         required: false
       },
       num:{
-        required:true,
-        range:[this.data.minNum,this.data.maxNum]
+        required:true
       }
     }
     const messages = {
@@ -158,13 +157,13 @@ Page({
   addNum(e){
     let num=e.detail;
     this.setData({
-      num: num
+      num: parseInt(num)
     })
   },
   reduceNum(e){
     let num = e.detail;
     this.setData({
-      num: num
+      num: parseInt(num)
     })
   }
 })

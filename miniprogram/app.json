@@ -5,7 +5,6 @@
     "pages/config/config",
     "pages/custom/custom",
     "pages/custom/cusdetail",
-    "pages/order/order",
     "pages/order/orderdetail",
     "pages/card/cardlist",
     "pages/card/card",
@@ -16,6 +15,7 @@
     "pages/search/searchresult",
     "pages/booking/index/booking",
     "pages/booking/detail/detail",
+    "pages/order/order",
     "pages/booking/toorder/toorder",
     "pages/booking/complete/complete"
   ],

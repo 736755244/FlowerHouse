@@ -13,6 +13,7 @@ Page({
     curType:""//当前订单类型
   },
   onLoad(options) {
+    new app.ToastPannel();
     var that = this;
     that.setData({
       curType: options.type
@@ -81,6 +82,11 @@ Page({
   },
   //按钮统一操作
   cmdOption(e){
+    this.showTip({
+      icon:"success",
+      content: "444444444sfdsfdsfsddsgsdgsg44444"
+    })
+    return;
     var that=this;
     var btntype = e.currentTarget.dataset.btntype;
     var orderinfo = e.currentTarget.dataset.item;
@@ -92,11 +98,11 @@ Page({
         goodid: orderinfo.goodid
       }
     }).then(res => {
-      console.log(that.data.curType);
       that.getlist(that.data.curType);
-      wx.showToast({
-        title: res.result[0].message
-      })
+      that.showTip(res.result[0].message)
+      // wx.showToast({
+      //   title: res.result[0].message
+      // })
     })
    
   },

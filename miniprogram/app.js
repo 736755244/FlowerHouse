@@ -1,7 +1,9 @@
 //app.js
-var plugin = requirePlugin("chatbot");
-import WxValidate from "./utils/WxValidate";
+var plugin = requirePlugin("chatbot");//机器人
+import WxValidate from "./utils/WxValidate";//约束验证
+import { ToastPannel } from './components/appToast/appToast';//弹框
 App({
+  ToastPannel,
   //全局变量
   globalData: {
     iconpath: "https://7a61-zadmin-674aa1-1300199721.tcb.qcloud.la/icon/",

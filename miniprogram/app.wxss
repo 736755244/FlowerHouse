@@ -1,5 +1,4 @@
-/**app.wxss**/
-/* 不使用flex布局 */
+@import "./components/appToast/appToast.wxss"; 
 .container {
   display: block;
   flex-direction: column;
