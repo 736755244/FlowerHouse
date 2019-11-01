@@ -1,0 +1,9 @@
+{
+  "triggers": [
+    {
+      "name": "timingTask",
+      "type": "timer",
+      "config": "0 15 10 * * MON-FRI *"
+    }
+  ]
+}

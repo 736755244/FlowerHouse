@@ -3,7 +3,7 @@ let _compData = {
   '_toast_.content': '',// 显示的内容
   '_toast_.isUserImg': false,// 控制是否显示用户自定义的图片
   '_toast_.iconType': '',// 控件配置的提示类型
-  '_toast_.img': ''// 用户自定义图片图片
+  '_toast_.img': ''// 用户自定义图片图片（网络路径）
 }
 let toastPannel = {
   // toast显示的方法
