@@ -1,4 +1,6 @@
-<!--index.wxml-->
+<import src="../../components/appToast/appToast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
 <view class="container">
   <!-- 顶部搜索 -->
   <SearchBar 
@@ -12,13 +14,15 @@
   </SearchBar>
 
   <view class="search_item">
-    <view>推荐搜索</view>
-    <view bindtap="cmdSearchForKey">
-      <div data-curtype="简约混合">简约混合</div>
-      <div data-curtype="繁花混合">繁花混合</div>
-      <div data-curtype="单品简花">单品简花</div>
-      <div data-curtype="鲜花礼盒">鲜花礼盒</div>
-      <div data-curtype="玫瑰花束">玫瑰花束</div>
+    <view>搜索历史</view>
+    <view bindtap="cmdSearchForKey" wx:if="{{!isEmpty}}" >
+      <block wx:for="{{defaultList}}" wx:key="*this">
+        <div data-key="{{item.keyword}}">{{item.keyword}}</div>
+      </block>
+    </view>
+    <view wx:if="{{isEmpty}}" class="nodata" >
+      <image src="../../images/icon/noorder.png"></image>
+      <text>\n 您还未搜索过商品哦</text>
     </view>
   </view>
 </view>

@@ -16,6 +16,7 @@ Page({
     maxNum:0
   },
   onLoad(option){
+    new app.ToastPannel();
     var that = this;
     that.setData({
       goodid: option.goodid
@@ -114,8 +115,9 @@ Page({
   //确认订单
   confirmOrder(){
     if (!app.globalData.userinfo.userid){
-      wx.showToast({
-        title: '未获取到用户信息，请退出重试',
+      that.showTip({
+        icon: "warning",
+        content: "未获取到用户信息，请退出重试"
       })
       return;
     }

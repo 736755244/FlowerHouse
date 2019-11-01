@@ -1,90 +1,28 @@
-// pages/search/searchresult.js
+const app=getApp();
+const db = wx.cloud.database();
+var util = require('../../utils/util.js');
+
 Page({
   data: {
     searchstr:'',
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
-    TypeList: [
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCk7qHgBSjMtImhATDuBTj8AkBl.png",
-        type: "简约混合",
-        spec: "3-4种花材，8-12枝花头",
-        price: 366.00,
-        order_num: 24,
-        order_res: 43
-      },
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCq7qHgBSiyjPKfAzDuBTj8AkBl.png",
-        type: "单品简花",
-        spec: "单一花材 1-30枝",
-        price: 76.00,
-        order_num: 37,
-        order_res: 96
-      },
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCn7qHgBSjoo9s_MO4FOPwCQGU.png",
-        type: "繁花混合",
-        spec: "4-6种花材，12枝以上",
-        price: 399.00,
-        order_num: 337,
-        order_res: 125
-      },
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCk7qHgBSjMtImhATDuBTj8AkBl.png",
-        type: "简约混合",
-        spec: "3-4种花材，8-12枝花头",
-        price: 74.00,
-        order_num: 45,
-        order_res: 79
-      }
-    ],
-    TypeList1: [
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCq7qHgBSiyjPKfAzDuBTj8AkBl.png",
-        type: "单品简花",
-        spec: "单一花材 1-30枝",
-        price: 76.00,
-        order_num: 37,
-        order_res: 96
-      },
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCn7qHgBSjoo9s_MO4FOPwCQGU.png",
-        type: "繁花混合",
-        spec: "4-6种花材，12枝以上",
-        price: 399.00,
-        order_num: 337,
-        order_res: 125
-      }
-    ],
-    TypeList2: [
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCk7qHgBSjMtImhATDuBTj8AkBl.png",
-        type: "简约混合",
-        spec: "3-4种花材，8-12枝花头",
-        price: 74.00,
-        order_num: 45,
-        order_res: 79
-      },
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCk7qHgBSjMtImhATDuBTj8AkBl.png",
-        type: "简约混合",
-        spec: "3-4种花材，8-12枝花头",
-        price: 366.00,
-        order_num: 24,
-        order_res: 43
-      },
-      {
-        img: "http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACCq7qHgBSiyjPKfAzDuBTj8AkBl.png",
-        type: "单品简花",
-        spec: "单一花材 1-30枝",
-        price: 76.00,
-        order_num: 37,
-        order_res: 96
-      }
-    ],
+    showList:false,//是否展示页面
+    goodList:[],//查询结果
+    isgoodEmpty:false,//是否商品为空
+    artList:[],//文章列表
+    isartEmpty:false,//是否文章为空
+    defaultList: [],//搜索历史
+    issearchEmpty: false//搜索历史是否为空
+  },
+  onShow(){
+    var that = this;
+    that.getDefault();
   },
   onLoad(option){
     var that=this;
+    that.getResultByKeyword(option.searchstr);
+    that.getArticle(app.globalData.storeid);
     that.setData({
       searchstr: option.searchstr
     })
@@ -101,6 +39,63 @@ Page({
       }
     });
   },
+  //查询商品结果
+  getResultByKeyword(key) {
+    var that=this;
+    wx.cloud.callFunction({
+      name:'getSearchResult',
+     data:{
+       keyword: key
+     }
+    }).then(res => {
+      that.setData({
+        showList:true,
+        goodList:res.result[0],
+        isgoodEmpty: (res.result.length == 0 || res.result[0].length == 0) ? true:false
+      })
+    })
+  },
+  //查询文章
+  getArticle(sid){
+    var that=this;
+    wx.cloud.callFunction({
+      name:'getArtList',
+      data:{
+        storeid:app.globalData.storeid
+      }
+    }).then(res=>{
+      that.setData({
+        artList:res.result[0],
+        isartEmpty: (res.result.length == 0 || res.result[0].length == 0) ? true : false
+      })
+    })
+  },
+  //查询搜索历史
+  getDefault() {
+    var that = this;
+    wx.cloud.callFunction({
+      name: 'getDefaultSearch',
+      data: {
+        userid: app.globalData.userinfo.userid,
+      }
+    }).then(res => {
+      that.setData({
+        defaultList: res.result,
+        issearchEmpty: res.result.length == 0 ? true : false
+      })
+    })
+  },
+  //新增搜索历史
+  addSearchHistroy(value) {
+    wx.cloud.callFunction({
+      name: 'addSearchHistroy',
+      data: {
+        userid: app.globalData.userinfo.userid,
+        keyword: value,
+        date: util.formatDate(new Date())
+      }
+    })
+  },
   //搜索框输入时触发
   inputchange(ev) {
     let e = ev.detail;
@@ -110,9 +105,9 @@ Page({
   },
   //按下键盘上的done或者确认按钮触发
   cmdsearch(e) {
+    this.addSearchHistroy(this.data.searchstr);
+    this.getResultByKeyword(this.data.searchstr);
     this.setData({
-      searchstr:this.data.searchstr,
-      TypeList:this.data.TypeList2,
       currentTab:0
     })
   },
@@ -137,15 +132,19 @@ Page({
   },
   //快捷搜索
   cmdSearchForKey(e) {
-    var type = e.target.dataset.curtype;
-    if (!!type) {
+    var keyword = e.target.dataset.key;
+    if (!!keyword) {
+      this.addSearchHistroy(keyword);
+      this.getResultByKeyword(keyword);
       //跳转本页面，刷新数据
       this.setData({
-        searchstr: type,
-        TypeList:this.data.TypeList1,
+        searchstr: keyword,
         currentTab:0
       })
     } else {
+      wx.showToast({
+        title: '未输入搜索条件',
+      })
       return;
     }
   },

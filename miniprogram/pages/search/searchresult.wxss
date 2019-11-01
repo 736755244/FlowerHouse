@@ -142,3 +142,14 @@ div{
 .part2{
   margin-top: 10px;
 }
+
+.nodata{
+  padding-top: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+}
+.nodata image{
+  width: 30px;
+  height: 30px;
+}

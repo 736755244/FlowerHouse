@@ -5,6 +5,7 @@ var util = require('../../utils/util.js');
 Page({
   data: {
     winHeight: "",//窗口高度
+    tabBarList:[],//选项卡列表
     currentTab: 0, //选项卡
     scrollLeft: 0, //tab标题的滚动条位置
     newlist:[],//列表数据
@@ -15,6 +16,9 @@ Page({
   onLoad(options) {
     new app.ToastPannel();
     var that = this;
+    //获取选项卡数据
+    that.getOrderType();
+    //设置当前类型
     that.setData({
       curType: options.type
     })
@@ -34,6 +38,16 @@ Page({
         });
       }
     });
+  },
+  getOrderType(){
+    var that=this;
+    wx.cloud.callFunction({
+      name:'getOrderType'
+    }).then(res=>{
+      that.setData({
+        tabBarList:res.result
+      })
+    })
   },
   //分发不同list
   getlist(id){
@@ -82,11 +96,6 @@ Page({
   },
   //按钮统一操作
   cmdOption(e){
-    this.showTip({
-      icon:"success",
-      content: "444444444sfdsfdsfsddsgsdgsg44444"
-    })
-    return;
     var that=this;
     var btntype = e.currentTarget.dataset.btntype;
     var orderinfo = e.currentTarget.dataset.item;
@@ -99,10 +108,10 @@ Page({
       }
     }).then(res => {
       that.getlist(that.data.curType);
-      that.showTip(res.result[0].message)
-      // wx.showToast({
-      //   title: res.result[0].message
-      // })
+      that.showTip({
+        icon: "success",
+        content: res.result[0].message
+      })
     })
    
   },

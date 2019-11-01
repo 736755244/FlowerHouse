@@ -14,6 +14,7 @@ Page({
     message:''
   },
   onLoad(){
+    new app.ToastPannel();
     this.getStoreImg();
     //初始化验证规则
     this.initValidate();
@@ -128,12 +129,16 @@ Page({
         this.setData({
           coverimg: res.fileID
         })
-        wx.showToast({
-          title: '上传成功',
+        this.showTip({
+          icon: "success",
+          content: "上传成功"
         })
       },
       fail: err => {
-        console.log(err);
+        this.showTip({
+          icon: "warning",
+          content: "上传失败"
+        })
       }
     })
   },
@@ -153,10 +158,12 @@ Page({
           name: '',
           tel: '',
           coverimg: '',
-          message: ''
+          message: '',
+          tempFilePaths:''
         });
-        wx.showToast({
-          title: '提交留言成功'
+        that.showTip({
+          icon: "success",
+          content: "提交留言成功"
         })
       }
     })

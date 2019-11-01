@@ -2,7 +2,7 @@ let _compData = {
   '_toast_.isHide': false,// 控制组件显示隐藏
   '_toast_.content': '',// 显示的内容
   '_toast_.isUserImg': false,// 控制是否显示用户自定义的图片
-  '_toast_.icon': '',// 控件配置的提示类型
+  '_toast_.iconType': '',// 控件配置的提示类型
   '_toast_.img': ''// 用户自定义图片图片
 }
 let toastPannel = {
@@ -12,7 +12,7 @@ let toastPannel = {
     this.setData({ 
       '_toast_.isHide': true, 
       '_toast_.content': data.content,
-      '_toast_.icon': data.icon || 'success'//data.image ? data.image:(data.icon || 'success')
+      '_toast_.iconType': data.icon || 'success'//data.image ? data.image:(data.icon || 'success')
     });
     setTimeout(function () {
       self.setData({ '_toast_.isHide': false })//自定义方法，根据编辑需求

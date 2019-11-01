@@ -1,5 +1,7 @@
-<!--index.wxml-->
-<view class="container">
+<view wx:if="{{!showList}}" class="loading">
+  <image src="../../images/icon/timg.gif"></image>
+</view>
+<view class="container" wx:if="{{showList}}">
   <!-- 顶部搜索 -->
   <SearchBar 
     id="SearchBar" 
@@ -11,7 +13,7 @@
     bind:activity_clear="activity_clear">
   </SearchBar>
 
-  <view class="tab-h" >
+  <view class="tab-h">
     <view 
     class="tab-item {{currentTab==0?'active':''}}"  
     data-current="0" 
@@ -31,57 +33,53 @@
         <scroll-view scroll-y="true" class="scoll-h" >
           <view class="part1">
             <view class="tabtitle">服务</view>
-            <block wx:for="{{TypeList}}" wx:key="*this">
+            <block wx:for="{{goodList}}" wx:key="*this" wx:if="{{!isgoodEmpty}}" >
               <view class="card_con">
-                <image src="{{item.img}}"></image>
-                <div class="main_t"><text>{{item.type}}\n</text></div>
-                <div class="sub_t"><text>{{item.spec}}</text></div>
+                <image src="{{item.filepath}}"></image>
+                <div class="main_t"><text>{{item.typename}}\n</text></div>
+                <div class="sub_t"><text>{{item.sub}}</text></div>
                 <div class="f_info">
                   <div class="sub_info">
                     <text>¥{{item.price}}</text>
-                    <text>已预约：{{item.order_num}}</text>
-                    <text>剩余：{{item.order_res}}</text>
+                    <text>已预约：{{item.ordernum}}</text>
+                    <text>剩余：{{item.invnum}}</text>
                   </div>
-                  <button bindtap="navato" id="{{index}}">立即预约</button>
+                  <button bindtap="navato" id="{{item._id}}">立即预约</button>
                 </div>
               </view>
             </block>
+            <view wx:if="{{isgoodEmpty}}" class="nodata" >
+              <image src="../../images/icon/noorder.png"></image>
+              <text>\n 暂未上架这些产品哦</text>
+            </view>
           </view>
           <view class="part2">
             <view class="tabtitle">文章</view>
-              <view class="news">
-                <view class="news_item" bindtap="toDetail" data-newid="1">
+              <view class="news" wx:for="{{artList}}" wx:key="*this" wx:if="{{!isartEmpty}}">
+                <view class="news_item" bindtap="toDetail" data-newid="_id">
                   <div class="short_info">
-                    <div class="info_title">六种鲜花的保鲜方法</div>
-                    <div class="info_sub">鲜花包养，做的好的话，一朵鲜花可以发挥...</div>
-                    <div class="info_date">2019-09-10</div>
+                    <div class="info_title">{{item.title}}</div>
+                    <div class="info_sub">{{item.sub_title}}</div>
+                    <div class="info_date">{{item.date}}</div>
                   </div>
-                  <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDAp57gBSi8p7_HBTCEAjjSAUBl.png"></image>
+                  <image src="{{item.filepath}}"></image>
                 </view>
-                <view class="news_item" bindtap="toDetail" data-newid="2">
-                  <div class="short_info">
-                    <div class="info_title">风信子盆栽易打理，简单水培就可以，几盆一起就是鲜花爆盆的效果！</div>
-                    <div class="info_date">2019-09-10</div>
-                  </div>
-                  <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC_p57gBSjSruimBTDSATiTAkBl.png"></image>
-                </view>
-                <view class="news_item" bindtap="toDetail" data-newid="3">
-                  <div class="short_info">
-                    <div class="info_title">北方也能养南方的蝴蝶兰，照着这样打理，让鲜花陪你度过漫长冬季</div>
-                    <div class="info_date">2019-09-10</div>
-                  </div>
-                  <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8p57gBSjChrOzBDCEAjjSAUBl.png"></image>
-                </view>
+              </view>
+              <view wx:if="{{isartEmpty}}" class="nodata" >
+                <image src="../../images/icon/noorder.png"></image>
+                <text>\n 还没有文章发表哦</text>
               </view>
           </view>
           <view class="search_item">
-            <view>推荐搜索</view>
-            <view bindtap="cmdSearchForKey">
-              <div data-curtype="简约混合">简约混合</div>
-              <div data-curtype="繁花混合">繁花混合</div>
-              <div data-curtype="单品简花">单品简花</div>
-              <div data-curtype="鲜花礼盒">鲜花礼盒</div>
-              <div data-curtype="玫瑰花束">玫瑰花束</div>
+            <view>搜索历史</view>
+            <view bindtap="cmdSearchForKey" wx:if="{{!issearchEmpty}}" >
+              <block wx:for="{{defaultList}}" wx:key="*this">
+                <div data-key="{{item.keyword}}">{{item.keyword}}</div>
+              </block>
+            </view>
+            <view wx:if="{{issearchEmpty}}" class="nodata" >
+              <image src="../../images/icon/noorder.png"></image>
+              <text>\n 您还未搜索过商品哦</text>
             </view>
           </view>
         </scroll-view>
@@ -89,30 +87,36 @@
       <swiper-item>
         <scroll-view scroll-y="true" class="scoll-h" >
           <view class="part1">
-            <block wx:for="{{TypeList}}" wx:key="*this">
+            <block wx:for="{{goodList}}" wx:key="*this" wx:if="{{!isgoodEmpty}}" >
               <view class="card_con">
-                <image src="{{item.img}}"></image>
-                <div class="main_t"><text>{{item.type}}\n</text></div>
-                <div class="sub_t"><text>{{item.spec}}</text></div>
+                <image src="{{item.filepath}}"></image>
+                <div class="main_t"><text>{{item.typename}}\n</text></div>
+                <div class="sub_t"><text>{{item.sub}}</text></div>
                 <div class="f_info">
                   <div class="sub_info">
                     <text>¥{{item.price}}</text>
-                    <text>已预约：{{item.order_num}}</text>
-                    <text>剩余：{{item.order_res}}</text>
+                    <text>已预约：{{item.ordernum}}</text>
+                    <text>剩余：{{item.invnum}}</text>
                   </div>
-                  <button bindtap="navato" id="{{index}}">立即预约</button>
+                  <button bindtap="navato" id="{{item._id}}">立即预约</button>
                 </div>
               </view>
             </block>
+            <view wx:if="{{isgoodEmpty}}" class="nodata" >
+              <image src="../../images/icon/noorder.png"></image>
+              <text>\n 暂未上架这些产品哦</text>
+            </view>
           </view>
           <view class="search_item">
-            <view>推荐搜索</view>
-            <view bindtap="cmdSearchForKey">
-              <div data-curtype="简约混合">简约混合</div>
-              <div data-curtype="繁花混合">繁花混合</div>
-              <div data-curtype="单品简花">单品简花</div>
-              <div data-curtype="鲜花礼盒">鲜花礼盒</div>
-              <div data-curtype="玫瑰花束">玫瑰花束</div>
+            <view>搜索历史</view>
+            <view bindtap="cmdSearchForKey" wx:if="{{!issearchEmpty}}" >
+              <block wx:for="{{defaultList}}" wx:key="*this">
+                <div data-key="{{item.keyword}}">{{item.keyword}}</div>
+              </block>
+            </view>
+            <view wx:if="{{issearchEmpty}}" class="nodata" >
+              <image src="../../images/icon/noorder.png"></image>
+              <text>\n 您还未搜索过商品哦</text>
             </view>
           </view>
         </scroll-view>
@@ -120,43 +124,36 @@
       <swiper-item>
         <scroll-view scroll-y="true" class="scoll-h" >
           <view class="part2">
-            <view class="news">
-              <view class="news_item" bindtap="toDetail" data-newid="1">
-                <div class="short_info">
-                  <div class="info_title">六种鲜花的保鲜方法</div>
-                  <div class="info_sub">鲜花包养，做的好的话，一朵鲜花可以发挥...</div>
-                  <div class="info_date">2019-09-10</div>
-                </div>
-                <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACDAp57gBSi8p7_HBTCEAjjSAUBl.png"></image>
+            <view class="tabtitle">文章</view>
+              <view class="news" wx:for="{{artList}}" wx:key="*this"  wx:if="{{!isartEmpty}}">
+                <view class="news_item" bindtap="toDetail" data-newid="_id">
+                  <div class="short_info">
+                    <div class="info_title">{{item.title}}</div>
+                    <div class="info_sub">{{item.sub_title}}</div>
+                    <div class="info_date">{{item.date}}</div>
+                  </div>
+                  <image src="{{item.filepath}}"></image>
+                </view>
               </view>
-              <view class="news_item" bindtap="toDetail" data-newid="2">
-                <div class="short_info">
-                  <div class="info_title">风信子盆栽易打理，简单水培就可以，几盆一起就是鲜花爆盆的效果！</div>
-                  <div class="info_date">2019-09-10</div>
-                </div>
-                <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC_p57gBSjSruimBTDSATiTAkBl.png"></image>
+              <view wx:if="{{isartEmpty}}" class="nodata" >
+                <image src="../../images/icon/noorder.png"></image>
+                <text>\n 还没有文章发表哦</text>
               </view>
-              <view class="news_item" bindtap="toDetail" data-newid="3">
-                <div class="short_info">
-                  <div class="info_title">北方也能养南方的蝴蝶兰，照着这样打理，让鲜花陪你度过漫长冬季</div>
-                  <div class="info_date">2019-09-10</div>
-                </div>
-                <image src="http://436052.s81i.faiusr.com/4/101/AFEI1M4aEAQYACC8p57gBSjChrOzBDCEAjjSAUBl.png"></image>
-              </view>
-            </view>
           </view>
           <view class="search_item">
-            <view>推荐搜索</view>
-            <view bindtap="cmdSearchForKey">
-              <div data-curtype="简约混合">简约混合</div>
-              <div data-curtype="繁花混合">繁花混合</div>
-              <div data-curtype="单品简花">单品简花</div>
-              <div data-curtype="鲜花礼盒">鲜花礼盒</div>
-              <div data-curtype="玫瑰花束">玫瑰花束</div>
+            <view>搜索历史</view>
+            <view bindtap="cmdSearchForKey" wx:if="{{!issearchEmpty}}" >
+              <block wx:for="{{defaultList}}" wx:key="*this">
+                <div data-key="{{item.keyword}}">{{item.keyword}}</div>
+              </block>
+            </view>
+            <view wx:if="{{issearchEmpty}}" class="nodata" >
+              <image src="../../images/icon/noorder.png"></image>
+              <text>\n 您还未搜索过商品哦</text>
             </view>
           </view>
         </scroll-view>
       </swiper-item>
   </swiper>
-
 </view>
+

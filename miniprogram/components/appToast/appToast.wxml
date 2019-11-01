@@ -3,7 +3,7 @@
  <template name="toast"> 
   <view class="toast_content_box" wx:if="{{ isHide }}">  
     <view class="toast_content">  
-      <view class="toast_content_img {{icon}}">
+      <view class="toast_content_img {{iconType}}">
         <!-- <image src="{{pic}}"></image> -->
       </view>
       <view class="toast_content_text">  

@@ -1,3 +1,6 @@
+<import src="../../components/appToast/appToast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
 <!-- 提示警告! -->
 <view class='wran-tips' style='{{displayWarn}}'>
   <text>{{warnInfo}}</text>

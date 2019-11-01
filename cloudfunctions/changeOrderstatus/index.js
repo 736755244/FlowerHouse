@@ -31,12 +31,12 @@ exports.main = async (event, context) => {
           }).then(r => {
             return {
               status: 1,
-              message: "取消成功"
+              message: "取消成功,进入退款阶段"
             }
           }).catch(err=>{
             return {
               status: 0,
-              message: "取消失败"
+              message: "取消失败，请联系客服"
             }
           })
       })
@@ -54,12 +54,12 @@ exports.main = async (event, context) => {
       }).then(r => {
         data.push({
           status: 1,
-          message: "付款成功"
+          message: "付款成功，等待取货"
         })
       }).catch(err => {
         data.push({
           status: 0,
-          message: "付款失败"
+          message: "付款失败，请联系客服"
         }) 
       })
     return (await Promise.all(data))
@@ -74,12 +74,12 @@ exports.main = async (event, context) => {
       }).then(r => {
         data.push({
           status: 1,
-          message: "取货成功"
+          message: "取货成功，订单完成"
         })
       }).catch(err => {
         data.push({
           status: 0,
-          message: "操作失败"
+          message: "操作失败，请联系客服"
         })
       })
     return (await Promise.all(data))

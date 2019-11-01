@@ -1,7 +1,45 @@
-// pages/search/search.js
+const app = getApp();
+const db = wx.cloud.database();
+var util = require('../../utils/util.js');
+
 Page({
   data: {
-    searchstr: '',
+    searchstr: '',//搜索条件
+    defaultList:[],//搜索历史
+    isEmpty:false
+  },
+  onShow() {
+    var that = this;
+    //查询
+    that.getDefault();
+  },
+  onLoad(){
+    new app.ToastPannel();
+  },
+  getDefault(){
+    var that=this;
+    wx.cloud.callFunction({
+      name:'getDefaultSearch',
+      data:{
+        userid: app.globalData.userinfo.userid,
+      }
+    }).then(res=>{
+      that.setData({
+        defaultList:res.result,
+        isEmpty: res.result.length==0?true:false
+      })
+    })
+  },
+  //新增搜索历史
+  addSearchHistroy(value){
+    wx.cloud.callFunction({
+      name:'addSearchHistroy',
+      data:{
+        userid: app.globalData.userinfo.userid,
+        keyword: value,
+        date: util.formatDate(new Date())
+      }
+    })
   },
   //搜索框输入时触发
   inputchange(ev) {
@@ -26,19 +64,20 @@ Page({
   cmdsearch(e) {
     var keyword = this.data.searchstr;
     if (keyword) {
+      this.addSearchHistroy(keyword);
       this.navitoResult(keyword);
     } else {
+      this.showTip({
+        icon: "warning",
+        content: "请输入搜索内容哦"
+      })
       return;
     }
   },
-  //点击下方快捷搜索
+  //点击下方搜索历史
   cmdSearchForKey(e){
-    var type = e.target.dataset.curtype;
-    if (!!type){
-      this.navitoResult(type);
-    }else{
-      return;
-    }
+    var ketword = e.target.dataset.key;
+    this.navitoResult(ketword);
   },
   //跳转到搜索结果页面
   navitoResult(key){
